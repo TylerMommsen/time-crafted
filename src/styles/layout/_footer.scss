@@ -1,0 +1,62 @@
+footer {
+	display: flex;
+	justify-content: center;
+	background-color: $primary-color;
+	color: white;
+	height: auto;
+	gap: 100px;
+	padding: 50px;
+
+	.footer-section {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+
+		ul {
+			display: flex;
+			flex-direction: column;
+			gap: 10px;
+		}
+	}
+
+	button {
+		color: #a3a3a3;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+}
+
+.github-footer {
+	background-color: #161616;
+	color: white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 10px;
+	gap: 10px;
+
+	.github-icon {
+		height: 20px;
+
+		&:hover {
+			animation: github-icon 0.6s ease;
+		}
+	}
+}
+
+@keyframes github-icon {
+	0%,
+	100% {
+		transform: translate(0, 0) rotate(0deg) scale(1);
+	}
+	20%,
+	60% {
+		transform: translate(-3px, -3px) rotate(-10deg) scale(1.05);
+	}
+	40%,
+	80% {
+		transform: translate(3px, -3px) rotate(10deg) scale(1.05);
+	}
+}

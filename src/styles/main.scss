@@ -1,0 +1,13 @@
+@import './base/variables';
+@import './base/normalize';
+
+@import './layout/header';
+@import './layout/navbar';
+@import './layout/main';
+@import './layout/footer';
+
+#root {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
