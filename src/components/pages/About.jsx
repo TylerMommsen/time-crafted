@@ -1,7 +1,7 @@
 const About = () => {
 	return (
 		<>
-			<div className="about">
+			<div className="container">
 				<p>
 					At Time Crafted, we believe that time is not just a measure, but a masterpiece waiting to
 					be embraced. We are more than just an online watch store; we are curators of moments,

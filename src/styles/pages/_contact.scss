@@ -1,0 +1,60 @@
+.contact {
+	@include flexCenter;
+	height: 100vh;
+
+	.container {
+		color: black;
+		display: flex;
+		flex-direction: column;
+		width: 75ch;
+		gap: 50px;
+
+		.contact-title {
+			text-align: center;
+			font-weight: bold;
+			font-size: 32px;
+		}
+
+		form {
+			display: flex;
+			flex-direction: column;
+			gap: 20px;
+
+			label {
+				font-weight: bold;
+			}
+
+			input {
+				font-size: 20px;
+				border-radius: 5px;
+				padding: 10px;
+				border: 1px solid black;
+			}
+
+			textarea {
+				@extend input;
+				resize: none;
+			}
+		}
+
+		.form-section {
+			display: flex;
+			flex-direction: column;
+			width: 100%;
+			gap: 5px;
+		}
+
+		.form-submit {
+			background-color: rgb(74, 253, 29);
+			padding: 10px 20px 10px 20px;
+			font-size: 18px;
+			color: black;
+			align-self: flex-start;
+		}
+	}
+
+	.names-container {
+		display: flex;
+		gap: 30px;
+	}
+}

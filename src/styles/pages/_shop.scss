@@ -1,0 +1,31 @@
+.shop {
+	display: flex;
+	justify-content: center;
+	gap: 30px;
+	padding: 50px;
+	margin-top: $header-height;
+
+	.product-items-container {
+		display: flex;
+		flex-direction: column;
+		gap: 50px;
+	}
+
+	.product-items {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		row-gap: 50px;
+		column-gap: 200px;
+	}
+
+	.page-selection {
+		@include flexCenter;
+		gap: 20px;
+
+		.page {
+			padding: 10px 15px 10px 15px;
+			background-color: orange;
+			color: black;
+		}
+	}
+}

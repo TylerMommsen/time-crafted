@@ -1,9 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300&display=swap');
 @import './base/variables';
 @import './base/normalize';
 
 @import './layout/header';
 @import './layout/navbar';
-@import './layout/main';
+@import './pages/home.scss';
+@import './pages/shop';
+@import './components/productCard';
+@import './pages/about';
+@import './pages/contact';
 @import './layout/footer';
 
 #root {

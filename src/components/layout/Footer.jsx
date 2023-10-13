@@ -2,7 +2,7 @@ const Footer = () => {
 	return (
 		<>
 			<footer>
-				<div className="company-section footer-section">
+				<div className="footer-section">
 					<div className="footer-title">Company</div>
 					<ul>
 						<li>
@@ -22,7 +22,7 @@ const Footer = () => {
 						</li>
 					</ul>
 				</div>
-				<div className="brand-section footer-section">
+				<div className="footer-section">
 					<div className="footer-title">Brand</div>
 					<ul>
 						<li>
@@ -36,7 +36,7 @@ const Footer = () => {
 						</li>
 					</ul>
 				</div>
-				<div className="help-section footer-section">
+				<div className="footer-section">
 					<div className="footer-title">Support</div>
 					<ul>
 						<li>
@@ -59,7 +59,7 @@ const Footer = () => {
 						</li>
 					</ul>
 				</div>
-				<div className="official-channels footer-section">
+				<div className="footer-section">
 					<div className="footer-title">Official Channels</div>
 					<ul>
 						<li>
@@ -82,7 +82,7 @@ const Footer = () => {
 						</li>
 					</ul>
 				</div>
-				<div className="policys footer-section">
+				<div className="footer-section">
 					<div className="footer-title">Privacy And Terms</div>
 					<ul>
 						<li>

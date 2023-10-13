@@ -21,9 +21,16 @@ footer {
 
 	button {
 		color: #a3a3a3;
+		border: none;
+		padding: 0;
+		border-radius: 0;
 
 		&:hover {
 			text-decoration: underline;
+		}
+
+		&:active {
+			border: 1px dashed #a3a3a3;
 		}
 	}
 }

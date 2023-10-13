@@ -1,0 +1,12 @@
+.about {
+	@include flexCenter;
+	height: 100vh;
+
+	.container {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+		width: 75ch;
+		font-size: 20px;
+	}
+}

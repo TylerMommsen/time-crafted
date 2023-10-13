@@ -1,1 +1,9 @@
-$primary-color: #101010;
+$primary-color: #242424;
+$header-height: 80px;
+$nav-height: 80px;
+
+@mixin flexCenter() {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
