@@ -24,8 +24,15 @@
 
 		.page {
 			padding: 10px 15px 10px 15px;
-			background-color: orange;
-			color: black;
+			background-color: $primary-col;
+			color: $secondary-col;
+			transition: 0.3s;
+
+			&:hover {
+				background-color: transparent;
+				color: $primary-col;
+				border: 1px solid $primary-col;
+			}
 		}
 	}
 }

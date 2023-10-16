@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import ProductCard from '../common/ProductCard';
 import featuredWatchesData from '../../data/featured-watches.json';
+import watchBrands from '../../data/watch-brands.json';
 
 const Home = () => {
 	const [newsLetterEmail, setNewsLetterEmail] = useState();
@@ -55,17 +56,32 @@ const Home = () => {
 				</div>
 
 				<div className="featured-watches">
-					{featuredWatches.map((product, index) => (
-						<ProductCard
-							key={index}
-							isHomePage={true}
-							name={product.name}
-							price={product.price}
-							img={product.photo}
-						/>
-					))}
+					{featuredWatches.map((product, index) => {
+						let brandName = '';
+						let modelName = product.name;
+
+						for (let i = 0; i < watchBrands.length; i++) {
+							if (product.name.includes(watchBrands[i])) {
+								brandName = watchBrands[i];
+								modelName = product.name.replace(brandName, '').trim();
+							}
+						}
+
+						return (
+							<ProductCard
+								key={index}
+								isHomePage={true}
+								brandName={brandName}
+								modelName={modelName}
+								price={product.price}
+								img={product.photo}
+							/>
+						);
+					})}
 				</div>
-				<button className="view-all-btn">View All Watches</button>
+				<button className="view-all-btn">
+					<Link to="/Shop">View All Watches</Link>
+				</button>
 			</div>
 
 			<div className="watch-showcase-section">
