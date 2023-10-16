@@ -1,36 +1,68 @@
 footer {
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
-	background-color: $primary-color;
+	align-items: center;
+	background-color: $primary-col;
 	color: white;
 	height: auto;
-	gap: 100px;
-	padding: 50px;
+	gap: 50px;
+	padding: 100px 300px 100px 300px;
 
-	.footer-section {
+	.company-guarantees {
 		display: flex;
-		flex-direction: column;
-		gap: 20px;
+		justify-content: space-between;
+		width: 100%;
 
-		ul {
+		.guarantees-section {
 			display: flex;
 			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			text-align: center;
 			gap: 10px;
+
+			.guarantee-img {
+				width: 60px;
+				height: auto;
+			}
 		}
 	}
 
-	button {
-		color: #a3a3a3;
-		border: none;
-		padding: 0;
-		border-radius: 0;
+	.footer-links {
+		display: flex;
+		justify-content: space-between;
+		width: 100%;
 
-		&:hover {
-			text-decoration: underline;
+		.footer-section {
+			display: flex;
+			flex-direction: column;
+			gap: 20px;
+
+			.footer-title {
+				font-weight: bold;
+			}
+
+			ul {
+				display: flex;
+				flex-direction: column;
+				gap: 10px;
+			}
 		}
 
-		&:active {
-			border: 1px dashed #a3a3a3;
+		button {
+			color: #a3a3a3;
+			border: none;
+			padding: 0;
+			border-radius: 0;
+
+			&:hover {
+				text-decoration: underline;
+			}
+
+			&:active {
+				border: 1px dashed #a3a3a3;
+			}
 		}
 	}
 }

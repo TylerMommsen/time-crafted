@@ -1,8 +1,21 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import ProductCard from '../common/ProductCard';
+import featuredWatchesData from '../../data/featured-watches.json';
 
 const Home = () => {
 	const [newsLetterEmail, setNewsLetterEmail] = useState();
+	const [featuredWatches, setFeaturedWatches] = useState([]);
+
+	const getProducts = () => {
+		const numProductsToDisplay = 6;
+		const featuredWatches = featuredWatchesData.slice(0, numProductsToDisplay);
+		setFeaturedWatches(featuredWatches);
+	};
+
+	useEffect(() => {
+		getProducts();
+	}, []);
 
 	const handleNewsLetterInput = (e) => {
 		const field = e.target;
@@ -27,7 +40,7 @@ const Home = () => {
 					preload="auto"
 				></video>
 				<div className="hero-section-text">
-					<h1>WORK OF ART</h1>
+					<h1>Luxury Watches</h1>
 					<h3>When attention to details matter.</h3>
 					<button className="shop-now-btn">
 						<Link to="/Shop">Shop Now</Link>
@@ -35,27 +48,83 @@ const Home = () => {
 				</div>
 			</div>
 
-			<div className="featured-watches">Featured Watches</div>
+			<div className="featured-watches-section">
+				<div className="text-container">
+					<h3>SHOP</h3>
+					<h2>FEATURED WATCHES</h2>
+				</div>
 
-			<div className="new-arrival-watches">New Arrival Watches</div>
+				<div className="featured-watches">
+					{featuredWatches.map((product, index) => (
+						<ProductCard
+							key={index}
+							isHomePage={true}
+							name={product.name}
+							price={product.price}
+							img={product.photo}
+						/>
+					))}
+				</div>
+				<button className="view-all-btn">View All Watches</button>
+			</div>
+
+			<div className="watch-showcase-section">
+				<div className="text left">
+					<h3 className="light">Rolex Deepsea</h3>
+					<p className="light">Unparalleled Style and Precision</p>
+				</div>
+				<img className="showcase-img" src="/Rolex-Deep-Sea-Img.jpg"></img>
+			</div>
+
+			<div className="watch-showcase-section">
+				<div className="text right">
+					<h3 className="light">Oris Bracenet</h3>
+					<p className="light">Timeless Elegance on Your Wrist</p>
+				</div>
+				<img className="showcase-img" src="/Oris-Bracenet.jpg"></img>
+			</div>
+
+			<div className="watch-showcase-section">
+				<div className="text left">
+					<h3 className="dark">Rolex Lady-Datejust</h3>
+					<p className="dark">Elevate Your Presence</p>
+				</div>
+				<img className="showcase-img" id="lady-datejust" src="/Lady-Datejust-Img.jpg"></img>
+			</div>
+
+			<div className="watch-showcase-section">
+				<div className="text right">
+					<h3 className="light">Tudor Royal</h3>
+					<p className="light">Wear Time, Exude Excellence</p>
+				</div>
+				<img className="showcase-img" id="tudor-royal" src="/Tudor-Royal.jpg"></img>
+			</div>
 
 			<div className="news-letter-subscribe">
-				<h2 className="newsletter-title">Join our newsletter</h2>
-				<p>Be the first to know our best deals and promos!</p>
-				<form onSubmit={handleNewsLetterSubmit}>
-					<input
-						type="email"
-						id="email"
-						name="email"
-						value={newsLetterEmail}
-						onChange={handleNewsLetterInput}
-						placeholder="Email"
-						required
-					></input>
-					<button type="submit" className="newsletter-submit">
-						Join
-					</button>
-				</form>
+				<div className="img-container">
+					<img className="newsletter-img" src="/Carrera-Newsletter-Section-Img.jpg"></img>
+				</div>
+				<div className="form-section">
+					<div className="text">
+						<h2 className="newsletter-title">Stay Up To Date</h2>
+						<p>Be among the first to receive updates about our latest arrivals.</p>
+					</div>
+
+					<form onSubmit={handleNewsLetterSubmit}>
+						<input
+							type="email"
+							id="email"
+							name="email"
+							value={newsLetterEmail}
+							onChange={handleNewsLetterInput}
+							placeholder="Email"
+							required
+						></input>
+						<button type="submit" className="newsletter-submit">
+							Join
+						</button>
+					</form>
+				</div>
 			</div>
 		</>
 	);

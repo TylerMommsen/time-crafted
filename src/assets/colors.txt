@@ -1,0 +1,6 @@
+Green palette
+#192231
+#404a42
+#c0b283
+#eddbcd
+#f4f4f4

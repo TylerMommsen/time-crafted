@@ -23,7 +23,7 @@ const RouteSwitch = () => {
 
 	return (
 		<>
-			<Header />
+			<Header currPage={currentPage} />
 			<div className={`${currentPage}`}>
 				<Routes>
 					<Route path="/Home" element={<Home />} />

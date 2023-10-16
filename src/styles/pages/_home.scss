@@ -4,9 +4,10 @@
 
 	.hero-section {
 		width: 100%;
+		height: 100vh;
 
 		.hero-section-bg {
-			height: 100vh;
+			height: 100%;
 			width: 100%;
 			object-fit: cover;
 			position: relative;
@@ -33,7 +34,8 @@
 
 			.shop-now-btn {
 				margin-top: 30px;
-				background-color: rgb(255, 123, 0);
+				background-color: $primary-col;
+				color: $secondary-col;
 				padding: 20px 30px 20px 30px;
 				font-size: 30px;
 				font-weight: bold;
@@ -42,45 +44,150 @@
 		}
 	}
 
-	.featured-watches {
-		@include flexCenter;
-		height: 200px;
-		border: 1px solid black;
+	.featured-watches-section {
+		padding: 100px 150px 100px 150px;
+		height: calc(100vh * 0.8);
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		background-color: $secondary-col;
+		color: $primary-col;
+		gap: 50px;
+
+		.text-container {
+			display: flex;
+			flex-direction: column;
+			align-self: flex-start;
+
+			h2 {
+				font-size: 32px;
+			}
+		}
+
+		.featured-watches {
+			width: 100%;
+			display: flex;
+			justify-content: space-between;
+		}
+
+		.view-all-btn {
+			font-size: 20px;
+		}
 	}
 
-	.new-arrival-watches {
-		@include flexCenter;
-		height: 200px;
-		border: 1px solid black;
+	.watch-showcase-section {
+		position: relative;
+		height: calc(100vh * 0.8);
+		overflow: hidden;
+		.showcase-img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+
+		#lady-datejust {
+			transform: scale(1.2);
+		}
+
+		#tudor-royal {
+			transform: scale(1.3);
+			object-position: -50% 100%;
+		}
+
+		.text {
+			position: absolute;
+			top: 40%;
+			display: flex;
+			flex-direction: column;
+			gap: 10px;
+			z-index: 20;
+			height: auto;
+
+			h3 {
+				font-size: 50px;
+			}
+
+			p {
+				font-size: 24px;
+			}
+
+			.light {
+				color: $secondary-col;
+			}
+
+			.dark {
+				color: $primary-col;
+			}
+
+			&.left {
+				left: 10%;
+			}
+
+			&.right {
+				right: 10%;
+			}
+		}
 	}
 
 	.news-letter-subscribe {
+		height: 100%;
 		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
+		justify-content: space-between;
+		align-items: stretch;
 		gap: 20px;
-		background-color: #dbdbdb;
-		padding: 40px;
+		background-color: $primary-col;
+		color: $secondary-col;
+		padding: 50px;
+		box-shadow: 0px 0px 10px 5px $primary-col, 0px 0px 80px 30px $primary-col;
+		z-index: 1;
 
-		.newsletter-title {
-			font-size: 32px;
+		.img-container {
+			width: 50%;
+
+			.newsletter-img {
+				width: 100%;
+			}
 		}
 
-		form {
-			@include flexCenter;
-			gap: 20px;
+		.form-section {
+			display: flex;
+			flex-direction: column;
+			gap: 50px;
+			justify-content: center;
+			width: 50%;
+			box-shadow: -4px 20px 25px 60px $primary-col;
 
-			input {
-				padding: 10px;
-				border: 1px solid black;
-				font-size: 20px;
+			.text {
+				display: flex;
+				flex-direction: column;
+				gap: 10px;
+
+				.newsletter-title {
+					font-size: 50px;
+				}
+
+				p {
+					font-size: 24px;
+				}
 			}
 
-			.newsletter-submit {
-				background-color: black;
-				font-size: 20px;
-				padding: 10px 20px 10px 20px;
+			form {
+				display: flex;
+				gap: 20px;
+
+				input {
+					padding: 10px;
+					border: 1px solid black;
+					border-radius: 10px;
+					font-size: 24px;
+				}
+
+				.newsletter-submit {
+					background-color: $secondary-col;
+					color: $primary-col;
+					font-size: 20px;
+				}
 			}
 		}
 	}

@@ -2,7 +2,6 @@ nav {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	color: white;
 	height: $nav-height;
 	padding-top: 20px;
 	padding-bottom: 20px;
@@ -12,5 +11,9 @@ nav {
 		align-items: center;
 		gap: 50px;
 		font-size: 24px;
+
+		li {
+			color: $secondary-col;
+		}
 	}
 }

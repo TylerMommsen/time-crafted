@@ -1,6 +1,9 @@
-$primary-color: #242424;
 $header-height: 80px;
 $nav-height: 80px;
+
+$primary-col: #000000;
+$secondary-col: #ffffff;
+$secondary-col-dark: rgb(241, 241, 241);
 
 @mixin flexCenter() {
 	display: flex;

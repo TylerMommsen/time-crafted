@@ -1,6 +1,21 @@
 import ProductCard from '../common/ProductCard';
+import productsData from '../../data/watch-products.json';
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 const Shop = () => {
+	const [selectedProducts, setSelectedProducts] = useState([]);
+
+	const getProducts = () => {
+		const numProductsToDisplay = 24;
+		const selectedProducts = productsData.slice(0, numProductsToDisplay);
+		setSelectedProducts(selectedProducts);
+	};
+
+	useEffect(() => {
+		getProducts();
+	}, []);
+
 	return (
 		<>
 			<div className="filter-container">
@@ -14,18 +29,15 @@ const Shop = () => {
 			</div>
 			<div className="product-items-container">
 				<div className="product-items">
-					<ProductCard />
-					<ProductCard />
-					<ProductCard />
-					<ProductCard />
-					<ProductCard />
-					<ProductCard />
-					<ProductCard />
-					<ProductCard />
-					<ProductCard />
-					<ProductCard />
-					<ProductCard />
-					<ProductCard />
+					{selectedProducts.map((product, index) => (
+						<ProductCard
+							key={index}
+							isHomePage={false}
+							name={product.name}
+							price={product.price}
+							img={product.photo}
+						/>
+					))}
 				</div>
 				<div className="page-selection">
 					<button className="page">1</button>
