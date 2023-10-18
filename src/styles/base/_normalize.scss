@@ -4,6 +4,10 @@
 	box-sizing: border-box;
 }
 
+html {
+	scroll-behavior: smooth;
+}
+
 body {
 	font-family: 'Helvetica Now Text', Helvetica, sans-serif;
 	letter-spacing: 1px;

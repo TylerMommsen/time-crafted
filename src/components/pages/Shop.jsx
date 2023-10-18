@@ -7,9 +7,9 @@ import { useEffect } from 'react';
 const Shop = () => {
 	const [selectedPage, setSelectedPage] = useState(1);
 	const [selectedProducts, setSelectedProducts] = useState([]);
+	const [numProductsToDisplay, setNumProductsToDisplay] = useState(24);
 
 	const getProducts = () => {
-		const numProductsToDisplay = 24;
 		const startIndex = numProductsToDisplay * selectedPage - numProductsToDisplay;
 		const endIndex = numProductsToDisplay * selectedPage;
 		const selectedProducts = productsData.slice(startIndex, endIndex);
@@ -17,9 +17,9 @@ const Shop = () => {
 	};
 
 	const handlePageClick = (e) => {
-		console.log(e.target.textContent);
 		const clickedPage = e.target.textContent;
 		setSelectedPage(clickedPage);
+		window.scrollTo(0, 0);
 	};
 
 	useEffect(() => {
@@ -63,15 +63,52 @@ const Shop = () => {
 					})}
 				</div>
 				<div className="page-selection">
-					<button className="page" onClick={handlePageClick}>
-						{parseInt(selectedPage) > 1 ? selectedPage - 1 : selectedPage}
-					</button>
-					<button className="page" onClick={handlePageClick}>
-						{parseInt(selectedPage) === 1 ? 2 : selectedPage}
-					</button>
-					<button className="page" onClick={handlePageClick}>
-						{parseInt(selectedPage) < 3 ? 3 : parseInt(selectedPage) + 1}
-					</button>
+					{parseInt(selectedPage) > 1 ? (
+						<button className="page" onClick={handlePageClick}>
+							{parseInt(selectedPage) === Math.ceil(productsData.length / numProductsToDisplay)
+								? parseInt(selectedPage) - 2
+								: parseInt(selectedPage) - 1}
+						</button>
+					) : (
+						<button className="page" onClick={handlePageClick}>
+							{selectedPage}
+						</button>
+					)}
+
+					{parseInt(selectedPage) > 1 &&
+					parseInt(selectedPage) < Math.ceil(productsData.length / numProductsToDisplay) ? (
+						<button className="page" onClick={handlePageClick}>
+							{selectedPage}
+						</button>
+					) : parseInt(selectedPage) === 1 ? (
+						<button className="page" onClick={handlePageClick}>
+							{2}
+						</button>
+					) : (
+						<button className="page" onClick={handlePageClick}>
+							{Math.ceil(productsData.length / numProductsToDisplay) - 1}
+						</button>
+					)}
+
+					{parseInt(selectedPage) < Math.ceil(productsData.length / numProductsToDisplay) ? (
+						<button className="page" onClick={handlePageClick}>
+							{parseInt(selectedPage) > 1 ? parseInt(selectedPage) + 1 : parseInt(selectedPage) + 2}
+						</button>
+					) : (
+						<button className="page" onClick={handlePageClick}>
+							{Math.ceil(productsData.length / numProductsToDisplay)}
+						</button>
+					)}
+
+					{parseInt(selectedPage) < Math.ceil(productsData.length / numProductsToDisplay) - 1 ? (
+						<p>...</p>
+					) : null}
+
+					{parseInt(selectedPage) < Math.ceil(productsData.length / numProductsToDisplay) - 1 ? (
+						<button className="page" onClick={handlePageClick}>
+							{Math.ceil(productsData.length / numProductsToDisplay)}
+						</button>
+					) : null}
 				</div>
 			</div>
 		</>

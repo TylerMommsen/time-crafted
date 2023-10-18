@@ -96,6 +96,9 @@
 		}
 
 		.text {
+			opacity: 0;
+			transform: translateX(-20px);
+			transition: opacity 0.5s ease, transform 0.5s ease;
 			position: absolute;
 			top: 40%;
 			display: flex;
@@ -103,6 +106,11 @@
 			gap: 10px;
 			z-index: 20;
 			height: auto;
+
+			&.active {
+				opacity: 1;
+				transform: translateX(0);
+			}
 
 			h3 {
 				font-size: 50px;
