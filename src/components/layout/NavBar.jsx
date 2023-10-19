@@ -1,21 +1,33 @@
 import { Link } from 'react-router-dom';
 
 const NavBar = () => {
+	const scrollToTop = () => {
+		window.scrollTo(0, 0);
+	};
+
 	return (
 		<>
 			<nav>
 				<ul>
 					<li>
-						<Link to="/Home">Home</Link>
+						<Link to="/Home" onClick={scrollToTop}>
+							Home
+						</Link>
 					</li>
 					<li>
-						<Link to="/Shop">Shop</Link>
+						<Link to="/Shop" onClick={scrollToTop}>
+							Shop
+						</Link>
 					</li>
 					<li>
-						<Link to="/About">About</Link>
+						<Link to="/About" onClick={scrollToTop}>
+							About
+						</Link>
 					</li>
 					<li>
-						<Link to="/Contact">Contact</Link>
+						<Link to="/Contact" onClick={scrollToTop}>
+							Contact
+						</Link>
 					</li>
 				</ul>
 			</nav>

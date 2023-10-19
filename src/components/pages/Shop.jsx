@@ -29,6 +29,7 @@ const Shop = () => {
 
 	useEffect(() => {
 		getProducts();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [selectedPage]);
 
 	return (
@@ -198,7 +199,8 @@ const Shop = () => {
 									brandName={brandName}
 									modelName={modelName}
 									price={product.price}
-									img={product.photo}
+									frontImg={product.frontImage}
+									sideImg={product.sideImage}
 								/>
 							);
 						})}

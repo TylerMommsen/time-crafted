@@ -1,12 +1,27 @@
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 
-const ProductCard = ({ isHomePage, brandName, modelName, price, img }) => {
+const ProductCard = ({ isHomePage, brandName, modelName, price, frontImg, sideImg }) => {
+	const [isHovered, setIsHovered] = useState(false);
+
+	const handleMouseEnter = () => {
+		setIsHovered(true);
+	};
+
+	const handleMouseLeave = () => {
+		setIsHovered(false);
+	};
+
 	return (
 		<>
-			<div className={`product-card ${isHomePage ? 'homepage' : ''}`}>
+			<div
+				className={`product-card ${isHomePage ? 'homepage' : ''}`}
+				onMouseEnter={handleMouseEnter}
+				onMouseLeave={handleMouseLeave}
+			>
 				<div className="img-and-text">
 					<div className="img-container">
-						<img className="product-image" src={img}></img>
+						<img className="product-image" src={isHovered ? sideImg : frontImg}></img>
 					</div>
 					<p className="brand-name">{brandName}</p>
 					<p className="model-name">{modelName}</p>
@@ -29,7 +44,8 @@ ProductCard.propTypes = {
 	brandName: PropTypes.string,
 	modelName: PropTypes.string,
 	price: PropTypes.string,
-	img: PropTypes.string,
+	frontImg: PropTypes.string,
+	sideImg: PropTypes.string,
 };
 
 export default ProductCard;

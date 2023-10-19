@@ -1,21 +1,42 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import ProductCard from '../common/ProductCard';
-import featuredWatchesData from '../../data/featured-watches.json';
+import productsData from '../../data/watch-products.json';
 import watchBrands from '../../data/watch-brands.json';
 
 const Home = () => {
 	const [newsLetterEmail, setNewsLetterEmail] = useState();
 	const [featuredWatches, setFeaturedWatches] = useState([]);
+	const watchShowcaseRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
+	const [inView, setInView] = useState([false, false, false, false]);
 
 	const getProducts = () => {
 		const numProductsToDisplay = 6;
-		const featuredWatches = featuredWatchesData.slice(0, numProductsToDisplay);
+		const featuredWatches = productsData.slice(0, numProductsToDisplay);
 		setFeaturedWatches(featuredWatches);
 	};
 
 	useEffect(() => {
 		getProducts();
+
+		const handleScroll = () => {
+			const updatedInView = watchShowcaseRefs.map((ref) => {
+				if (ref.current) {
+					const targetRect = ref.current.getBoundingClientRect();
+					return targetRect.top < window.innerHeight && targetRect.bottom >= 0;
+				}
+				return false;
+			});
+
+			setInView(updatedInView);
+		};
+
+		window.addEventListener('scroll', handleScroll);
+		handleScroll();
+
+		return () => {
+			window.removeEventListener('scroll', handleScroll);
+		};
 	}, []);
 
 	const handleNewsLetterInput = (e) => {
@@ -74,7 +95,8 @@ const Home = () => {
 								brandName={brandName}
 								modelName={modelName}
 								price={product.price}
-								img={product.photo}
+								frontImg={product.frontImage}
+								sideImg={product.sideImage}
 							/>
 						);
 					})}
@@ -85,7 +107,7 @@ const Home = () => {
 			</div>
 
 			<div className="watch-showcase-section">
-				<div className="text left">
+				<div className={'text left ' + inView[0]} ref={watchShowcaseRefs[0]}>
 					<h3 className="light">Rolex Deepsea</h3>
 					<p className="light">Unparalleled Style and Precision</p>
 				</div>
@@ -93,7 +115,7 @@ const Home = () => {
 			</div>
 
 			<div className="watch-showcase-section">
-				<div className="text right">
+				<div className={'text right ' + inView[1]} ref={watchShowcaseRefs[1]}>
 					<h3 className="light">Oris Bracenet</h3>
 					<p className="light">Timeless Elegance on Your Wrist</p>
 				</div>
@@ -101,7 +123,7 @@ const Home = () => {
 			</div>
 
 			<div className="watch-showcase-section">
-				<div className="text left">
+				<div className={'text left ' + inView[2]} ref={watchShowcaseRefs[2]}>
 					<h3 className="dark">Rolex Lady-Datejust</h3>
 					<p className="dark">Elevate Your Presence</p>
 				</div>
@@ -109,7 +131,7 @@ const Home = () => {
 			</div>
 
 			<div className="watch-showcase-section">
-				<div className="text right">
+				<div className={'text right ' + inView[3]} ref={watchShowcaseRefs[3]}>
 					<h3 className="light">Tudor Royal</h3>
 					<p className="light">Wear Time, Exude Excellence</p>
 				</div>
