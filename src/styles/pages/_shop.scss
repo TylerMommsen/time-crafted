@@ -135,29 +135,56 @@
 			}
 
 			.search-container {
+				margin-top: 10px;
 				display: flex;
-				justify-content: flex-end;
-				align-items: center;
+				justify-content: space-between;
 				gap: 20px;
+				align-items: center;
 
-				#total-products-display {
-					border-right: 1px solid rgba($color: $primary-col, $alpha: 0.5);
-					padding-right: 20px;
-					height: 100%;
+				.active-filters {
 					display: flex;
 					align-items: center;
+					gap: 10px;
+
+					ul {
+						display: flex;
+						flex-flow: row wrap;
+						gap: 5px;
+
+						li {
+							display: flex;
+							gap: 10px;
+							align-items: center;
+							background-color: rgba($color: #000000, $alpha: 0.1);
+							border-radius: 20px;
+							padding: 0.3rem 0.7rem 0.3rem 0.7rem;
+							font-size: 0.8rem;
+							font-weight: bold;
+
+							button {
+								padding: 0.3rem 0.5rem 0.3rem 0.5rem;
+								font-size: 0.7rem;
+							}
+						}
+					}
 				}
 
-				.search-bar {
-					padding: 10px;
-				}
-			}
+				.search-bar-items {
+					display: flex;
+					justify-content: flex-end;
+					align-items: center;
+					gap: 20px;
+					#total-products-display {
+						border-right: 1px solid rgba($color: $primary-col, $alpha: 0.5);
+						padding-right: 20px;
+						height: 100%;
+						display: flex;
+						align-items: center;
+					}
 
-			.active-filters {
-				margin-top: 20px;
-
-				#current-filters-title {
-					align-self: flex-start;
+					.search-bar {
+						padding: 10px;
+					}
 				}
 			}
 
