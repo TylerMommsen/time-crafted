@@ -35,92 +35,112 @@ const Shop = () => {
 			return;
 		}
 
-		const updatedProducts = [];
-		for (let i = 0; i < productsData.length; i++) {
-			let includeProduct = false;
+		let allProducts = productsData;
+
+		const brandFilters = [];
+
+		allFilters.forEach((filter) => {
+			if (filter.type === 'brand') brandFilters.push(filter);
+		});
+
+		// filter all products by brand first if brands have been selected
+		if (brandFilters.length > 0) {
+			allProducts = productsData.filter((product) => {
+				const productBrand = product.name.toLowerCase();
+				return brandFilters.some((brandFilter) =>
+					productBrand.includes(brandFilter.value.toLowerCase())
+				);
+			});
+		}
+
+		let updatedProducts = [];
+
+		for (let i = 0; i < allProducts.length; i++) {
+			let includeProduct = true;
 
 			allFilters.forEach((filter) => {
 				if (filter.type === 'brand') {
-					if (productsData[i].name.toLowerCase().includes(filter.value.toLowerCase())) {
-						includeProduct = true;
-					}
+					return;
 				}
 
 				if (filter.type === 'price') {
-					const productPrice = parseInt(productsData[i].price.replace(',', ''));
+					const productPrice = parseInt(allProducts[i].price.replace(',', ''));
 					if (filter.value.toLowerCase() === 'less than $2,000') {
-						if (productPrice < 2000) includeProduct = true;
+						if (productPrice < 2000) return;
 					}
 					if (filter.value.toLowerCase() === '$2,000 - $4,999') {
-						if (productPrice >= 2000 && productPrice <= 4999) includeProduct = true;
+						if (productPrice >= 2000 && productPrice <= 4999) return;
 					}
 					if (filter.value.toLowerCase() === '$5,000 - $10,000') {
-						if (productPrice >= 5000 && productPrice <= 10000) includeProduct = true;
+						if (productPrice >= 5000 && productPrice <= 10000) return;
 					}
 					if (filter.value.toLowerCase() === '$10,000+') {
-						if (productPrice > 10000) includeProduct = true;
+						if (productPrice > 10000) return;
 					}
 				}
 
 				if (filter.type === 'condition') {
-					if (productsData[i].condition) {
-						if (productsData[i].condition.toLowerCase().includes(filter.value.toLowerCase())) {
-							includeProduct = true;
+					if (allProducts[i].condition) {
+						if (allProducts[i].condition.toLowerCase().includes(filter.value.toLowerCase())) {
+							return;
 						}
 					}
 				}
 
 				if (filter.type === 'dial color') {
-					if (productsData[i].dial.toLowerCase().includes(filter.value.toLowerCase())) {
-						includeProduct = true;
+					if (allProducts[i].dial.toLowerCase().includes(filter.value.toLowerCase())) {
+						return;
 					}
 				}
 
 				if (filter.type === 'size') {
-					if (productsData[i].case) {
-						if (productsData[i].case.toLowerCase().includes(filter.value.toLowerCase())) {
-							includeProduct = true;
+					if (allProducts[i].case) {
+						if (allProducts[i].case.toLowerCase().includes(filter.value.toLowerCase())) {
+							return;
 						}
 					}
 				}
 
 				if (filter.type === 'gender') {
-					if (productsData[i].gender) {
+					if (allProducts[i].gender) {
 						if (
 							filter.value.toLowerCase() === 'women' &&
-							productsData[i].gender.toLowerCase() === 'ladies'
+							allProducts[i].gender.toLowerCase() === 'ladies'
 						) {
-							includeProduct = true;
+							return;
 						}
 						if (
 							filter.value.toLowerCase() === 'men' &&
-							productsData[i].gender.toLowerCase() === "men's"
+							allProducts[i].gender.toLowerCase() === "men's"
 						) {
-							includeProduct = true;
+							return;
 						}
-						if (productsData[i].gender.toLowerCase() === 'unisex') includeProduct = true;
+						if (allProducts[i].gender.toLowerCase() === 'unisex') return;
 					}
 				}
 
 				if (filter.type === 'metal') {
-					if (productsData[i].case) {
-						if (productsData[i].case.toLowerCase().includes(filter.value.toLowerCase())) {
-							includeProduct = true;
+					if (allProducts[i].case) {
+						if (allProducts[i].case.toLowerCase().includes(filter.value.toLowerCase())) {
+							return;
 						}
 					}
 				}
 
 				if (filter.type === 'bracelet') {
-					if (productsData[i].bracelet) {
-						if (productsData[i].bracelet.toLowerCase().includes(filter.value.toLowerCase())) {
-							includeProduct = true;
+					if (allProducts[i].bracelet) {
+						if (allProducts[i].bracelet.toLowerCase().includes(filter.value.toLowerCase())) {
+							return;
 						}
 					}
 				}
+
+				// if no filter conditions have been met then don't include the product
+				includeProduct = false;
 			});
 
 			if (includeProduct) {
-				updatedProducts.push(productsData[i]);
+				updatedProducts.push(allProducts[i]);
 			}
 		}
 
