@@ -4,6 +4,7 @@ import Footer from './components/layout/Footer';
 import GitHubFooter from './components/layout/GitHubFooter';
 import Home from './components/pages/Home';
 import Shop from './components/pages/Shop';
+import ProductPage from './components/pages/ProductPage';
 import About from './components/pages/About';
 import Contact from './components/pages/Contact';
 import ErrorPage from './components/pages/ErrorPage';
@@ -24,15 +25,16 @@ const RouteSwitch = () => {
 	return (
 		<>
 			<Header currPage={currentPage} />
-			<div className={`${currentPage}`}>
+			<>
 				<Routes>
 					<Route path="/Home" element={<Home />} />
 					<Route path="/Shop" element={<Shop />} />
+					<Route path="/Shop/:productName" element={<ProductPage />} />
 					<Route path="/About" element={<About />} />
 					<Route path="/Contact" element={<Contact />} />
 					<Route path="*" element={<ErrorPage />} />
 				</Routes>
-			</div>
+			</>
 			<Footer />
 			<GitHubFooter />
 		</>

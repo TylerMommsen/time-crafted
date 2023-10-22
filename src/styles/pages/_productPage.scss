@@ -1,0 +1,130 @@
+.product-page {
+	display: flex;
+	flex-direction: column;
+	padding: 0 3rem 0 3rem;
+	color: black;
+	margin-top: $header-height;
+
+	.main-details {
+		padding: 3rem 0 3rem 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: calc(100vh - $header-height);
+
+		.img-container {
+			width: 50%;
+			height: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+
+			.product-img {
+				height: 90%;
+				width: auto;
+			}
+		}
+
+		.main-details-info {
+			width: 50%;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			gap: 20px;
+
+			.name {
+				font-weight: bold;
+				font-size: 3rem;
+				width: 30ch;
+			}
+
+			.price {
+				font-weight: bold;
+				font-size: 2rem;
+			}
+
+			.description {
+				font-size: 1.2rem;
+				width: 70ch;
+			}
+
+			.buttons-container {
+				display: flex;
+				gap: 10px;
+
+				.wishlist-button {
+					background-color: rgba($color: #eb4a4a, $alpha: 1);
+					border: transparent;
+				}
+
+				.buy-button,
+				.wishlist-button {
+					font-weight: bold;
+					font-size: 1.5rem;
+					padding: 0.6rem 2rem 0.6rem 2rem;
+				}
+			}
+		}
+
+		li {
+			color: black;
+		}
+	}
+
+	.extra-details {
+		display: flex;
+		padding: 3rem;
+
+		.product-guarantees {
+			width: 50%;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 20px;
+
+			.section {
+				display: flex;
+				flex-direction: column;
+				gap: 20px;
+				cursor: pointer;
+				text-align: center;
+				width: 80%;
+
+				.section-title {
+					font-weight: bold;
+					background-color: rgba($color: #000000, $alpha: 0.1);
+					border-radius: 30px;
+					padding: 1rem;
+				}
+
+				.section-info {
+					overflow: hidden;
+					transition: max-height 0.5s ease-in-out;
+				}
+			}
+		}
+
+		.product-details-info {
+			width: 50%;
+			display: flex;
+			flex-direction: column;
+			gap: 20px;
+
+			.details-container {
+				width: 90%;
+				display: flex;
+				flex-direction: column;
+				gap: 20px;
+
+				.detail {
+					display: grid;
+					grid-template-columns: 1fr 2fr;
+
+					.detail-title {
+						font-weight: bold;
+					}
+				}
+			}
+		}
+	}
+}
