@@ -127,4 +127,22 @@
 			}
 		}
 	}
+
+	.recommended-products-section {
+		align-self: center;
+		padding: 3rem;
+		display: flex;
+		flex-direction: column;
+		width: 90%;
+
+		h2 {
+			font-size: 40px;
+		}
+
+		.recommended-products {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+		}
+	}
 }

@@ -37,6 +37,7 @@ const Home = () => {
 		return () => {
 			window.removeEventListener('scroll', handleScroll);
 		};
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	const handleNewsLetterInput = (e) => {

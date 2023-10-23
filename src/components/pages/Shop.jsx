@@ -583,7 +583,12 @@ const Shop = () => {
 								}
 
 								return (
-									<Link to={`/Shop/${product.name}`} state={{ product: product }} key={index}>
+									<Link
+										to={`/Shop/${product.name}`}
+										state={{ product: product }}
+										key={index}
+										onClick={() => window.scrollTo({ top: 0, left: 0, behavior: 'instant' })}
+									>
 										<ProductCard
 											isHomePage={false}
 											brandName={brandName}

@@ -1,8 +1,13 @@
 import { useLocation } from 'react-router-dom';
+import productsData from '../../data/watch-products.json';
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import ProductCard from '../common/ProductCard';
 
 const ProductPage = () => {
 	const location = useLocation();
 	const product = location.state.product;
+	const [recommendedProducts, setRecommendedProducts] = useState([]);
 
 	const handleProductGuaranteeClick = (e) => {
 		const sectionInfo = e.target.nextElementSibling;
@@ -13,6 +18,27 @@ const ProductPage = () => {
 	const maxHeight = {
 		maxHeight: '0',
 	};
+
+	useEffect(() => {
+		const getRecommendedProducts = () => {
+			// sort all products by the brand of currently viewed product
+			const productBrand = product.manufacturer;
+			const allBrandProducts = productsData.filter((currProduct) => {
+				if (currProduct.id !== product.id && currProduct.manufacturer === productBrand) {
+					return currProduct;
+				}
+			});
+
+			// shuffle products and select 4
+			const shuffledProducts = allBrandProducts.slice().sort(() => Math.random() - 0.5);
+			return shuffledProducts.slice(0, 4);
+		};
+
+		const recommendedProducts = getRecommendedProducts();
+		setRecommendedProducts(recommendedProducts);
+		window.scrollTo(0, 0);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	return (
 		<>
@@ -152,6 +178,33 @@ const ProductPage = () => {
 								<p>Comes with 3 year Time Crafted international warranty</p>
 							</div>
 						</div>
+					</div>
+				</div>
+				<div className="recommended-products-section">
+					<h2>Recommended For You</h2>
+					<div className="recommended-products">
+						{recommendedProducts.map((product, index) => {
+							let brandName = product.manufacturer;
+							let modelName = product.name;
+
+							return (
+								<Link
+									to={`/Shop/${product.name}`}
+									state={{ product: product }}
+									key={index}
+									onClick={() => window.scrollTo(0, 0)}
+								>
+									<ProductCard
+										isHomePage={false}
+										brandName={brandName}
+										modelName={modelName}
+										price={product.price}
+										frontImg={product.frontImage}
+										sideImg={product.sideImage}
+									/>
+								</Link>
+							);
+						})}
 					</div>
 				</div>
 			</div>
