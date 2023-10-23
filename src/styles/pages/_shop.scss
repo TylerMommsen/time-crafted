@@ -80,6 +80,26 @@
 							text-decoration: underline;
 						}
 					}
+
+					.view-more-btn,
+					.view-less-btn {
+						background-color: transparent;
+						border: transparent;
+						text-decoration: underline;
+						color: black;
+						font-weight: bold;
+						padding: 0;
+						align-self: self-start;
+						font-size: 14px;
+					}
+
+					.hidden-options {
+						display: flex;
+						flex-direction: column;
+						gap: 10px;
+						overflow: hidden;
+						transition: maxHeight 0.3s ease;
+					}
 				}
 			}
 		}

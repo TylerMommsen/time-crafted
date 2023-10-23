@@ -30,6 +30,25 @@ const Shop = () => {
 		// do search
 	};
 
+	// open dropdown to view more filter options
+	const handleViewMoreClick = (e) => {
+		e.target.style.display = 'none';
+		const sectionInfo = e.target.nextElementSibling;
+		const contentHeight = e.target.nextElementSibling.scrollHeight + 'px';
+		sectionInfo.style.maxHeight = contentHeight;
+	};
+
+	const handleViewLessClick = (e) => {
+		const container = e.target.parentNode;
+		container.style.maxHeight = '0px';
+		container.previousElementSibling.style.display = 'block';
+	};
+
+	// max height used for animation dropdown when clicking view more
+	const filterOptionsMaxHeight = {
+		maxHeight: '0',
+	};
+
 	const updateProducts = (allFilters) => {
 		if (allFilters.length === 0) {
 			setFilteredProducts(productsData);
@@ -338,48 +357,98 @@ const Shop = () => {
 									>
 										42mm
 									</button>
-									<button
-										className="filter-option"
-										onClick={(e) => updateFilters('size', e.target.textContent)}
-									>
-										41mm
+									<button className="view-more-btn" onClick={handleViewMoreClick}>
+										View More
 									</button>
-									<button
-										className="filter-option"
-										onClick={(e) => updateFilters('size', e.target.textContent)}
-									>
-										40mm
-									</button>
-									<button
-										className="filter-option"
-										onClick={(e) => updateFilters('size', e.target.textContent)}
-									>
-										39mm
-									</button>
-									<button
-										className="filter-option"
-										onClick={(e) => updateFilters('size', e.target.textContent)}
-									>
-										38mm
-									</button>
-									<button
-										className="filter-option"
-										onClick={(e) => updateFilters('size', e.target.textContent)}
-									>
-										37mm
-									</button>
-									<button
-										className="filter-option"
-										onClick={(e) => updateFilters('size', e.target.textContent)}
-									>
-										36mm
-									</button>
-									<button
-										className="filter-option"
-										onClick={(e) => updateFilters('size', e.target.textContent)}
-									>
-										35mm
-									</button>
+									<div className="hidden-options" style={filterOptionsMaxHeight}>
+										<button
+											className="filter-option"
+											onClick={(e) => updateFilters('size', e.target.textContent)}
+										>
+											41mm
+										</button>
+										<button
+											className="filter-option"
+											onClick={(e) => updateFilters('size', e.target.textContent)}
+										>
+											40mm
+										</button>
+										<button
+											className="filter-option"
+											onClick={(e) => updateFilters('size', e.target.textContent)}
+										>
+											39mm
+										</button>
+										<button
+											className="filter-option"
+											onClick={(e) => updateFilters('size', e.target.textContent)}
+										>
+											38mm
+										</button>
+										<button
+											className="filter-option"
+											onClick={(e) => updateFilters('size', e.target.textContent)}
+										>
+											37mm
+										</button>
+										<button
+											className="filter-option"
+											onClick={(e) => updateFilters('size', e.target.textContent)}
+										>
+											36mm
+										</button>
+										<button
+											className="filter-option"
+											onClick={(e) => updateFilters('size', e.target.textContent)}
+										>
+											35mm
+										</button>
+										<button
+											className="filter-option"
+											onClick={(e) => updateFilters('size', e.target.textContent)}
+										>
+											34mm
+										</button>
+										<button
+											className="filter-option"
+											onClick={(e) => updateFilters('size', e.target.textContent)}
+										>
+											33mm
+										</button>
+										<button
+											className="filter-option"
+											onClick={(e) => updateFilters('size', e.target.textContent)}
+										>
+											31mm
+										</button>
+										<button
+											className="filter-option"
+											onClick={(e) => updateFilters('size', e.target.textContent)}
+										>
+											29mm
+										</button>
+										<button
+											className="filter-option"
+											onClick={(e) => updateFilters('size', e.target.textContent)}
+										>
+											28mm
+										</button>
+										<button
+											className="filter-option"
+											onClick={(e) => updateFilters('size', e.target.textContent)}
+										>
+											26mm
+										</button>
+										<button
+											className="filter-option"
+											onClick={(e) => updateFilters('size', e.target.textContent)}
+										>
+											24mm
+										</button>
+										<button className="view-less-btn" onClick={handleViewLessClick}>
+											View Less
+										</button>
+									</div>
 								</div>
 							</div>
 							<div className="filter-section">
