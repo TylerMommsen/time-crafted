@@ -1,23 +1,32 @@
 import ProductCard from '../common/ProductCard';
 import productsData from '../../data/watch-products.json';
 import watchBrands from '../../data/watch-brands.json';
-import { useState } from 'react';
+import SimpleParallax from 'simple-parallax-js';
+import { useRef, useState } from 'react';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const Shop = () => {
 	const [selectedPage, setSelectedPage] = useState(1);
-	const [filteredProducts, setFilteredProducts] = useState(productsData);
-	const [products, setProducts] = useState([]);
+	const [products, setProducts] = useState(productsData);
+	const [displayProducts, setDisplayProducts] = useState([]);
 	const [searchTerm, setSearchTerm] = useState('');
 	const [currentFilters, setCurrentFilters] = useState([]);
+	const [sortOption, setSortOption] = useState('featured');
 	const numProductsToDisplay = 24;
+	const bannerImg = useRef(null);
 
-	const getProducts = () => {
+	useEffect(() => {
+		if (bannerImg.current) {
+			new SimpleParallax(bannerImg.current);
+		}
+	}, []);
+
+	const currPageProducts = (allProducts) => {
 		const startIndex = numProductsToDisplay * selectedPage - numProductsToDisplay;
 		const endIndex = numProductsToDisplay * selectedPage;
-		const selectedProducts = filteredProducts.slice(startIndex, endIndex);
-		setProducts(selectedProducts);
+		const selectedProducts = allProducts.slice(startIndex, endIndex);
+		setDisplayProducts(selectedProducts);
 	};
 
 	const handlePageClick = (e) => {
@@ -49,10 +58,9 @@ const Shop = () => {
 		maxHeight: '0',
 	};
 
-	const updateProducts = (allFilters) => {
+	const filterProducts = (allFilters) => {
 		if (allFilters.length === 0) {
-			setFilteredProducts(productsData);
-			return;
+			return productsData;
 		}
 
 		let allProducts = productsData;
@@ -164,7 +172,20 @@ const Shop = () => {
 			}
 		}
 
-		setFilteredProducts(updatedProducts);
+		return updatedProducts;
+	};
+
+	const sortProducts = (products) => {
+		let sortedProducts = [...products];
+
+		if (sortOption === 'priceHighestToLowest') {
+			sortedProducts.sort((a, b) => b.price.replace(',', '') - a.price.replace(',', ''));
+		}
+		if (sortOption === 'priceLowestToHighest') {
+			sortedProducts.sort((a, b) => a.price.replace(',', '') - b.price.replace(',', ''));
+		}
+
+		return sortedProducts;
 	};
 
 	const updateFilters = (filterType, filterValue) => {
@@ -177,7 +198,6 @@ const Shop = () => {
 
 		if (!filterExists) {
 			setCurrentFilters(updatedFilters);
-			updateProducts(updatedFilters);
 		}
 	};
 
@@ -186,18 +206,24 @@ const Shop = () => {
 			(filter) => filter.type !== filterToRemove.type || filter.value !== filterToRemove.value
 		);
 		setCurrentFilters(updatedFilters);
-		updateProducts(updatedFilters);
+	};
+
+	const updateProducts = () => {
+		const filteredProducts = filterProducts(currentFilters);
+		const sortedProducts = sortProducts(filteredProducts);
+		setProducts(sortedProducts);
+		currPageProducts(sortedProducts);
 	};
 
 	useEffect(() => {
-		getProducts();
+		updateProducts();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [selectedPage, currentFilters]);
+	}, [selectedPage, currentFilters, sortOption]);
 
 	return (
 		<>
 			<div className="shop">
-				<img className="shop-page-banner" src="/Watch-Shop-Page-Banner.jpg"></img>
+				<img className="shop-page-banner" src="/Watch-Shop-Page-Banner.jpg" ref={bannerImg}></img>
 
 				<div className="shop-description-container">
 					<h2 className="shop-description">Welcome to Time Crafted Watches</h2>
@@ -627,7 +653,8 @@ const Shop = () => {
 							</div>
 
 							<div className="search-bar-items">
-								<p id="total-products-display">{filteredProducts.length + ' Items'}</p>
+								<p id="total-products-display">{products.length + ' Items'}</p>
+
 								<input
 									type="text"
 									placeholder="Search..."
@@ -635,12 +662,23 @@ const Shop = () => {
 									onChange={(e) => setSearchTerm(e.target.value)}
 									className="search-bar"
 								></input>
-								<button onClick={handleSearch}>Search</button>
+								<button onClick={handleSearch} id="search-btn">
+									Search
+								</button>
+
+								<div className="sorting-container">
+									<label htmlFor="sort-dropdown">Sort By: </label>
+									<select id="sort-dropdown" onChange={(e) => setSortOption(e.target.value)}>
+										<option value="featured">Featured</option>
+										<option value="priceLowestToHighest">Price: Lowest To Highest</option>
+										<option value="priceHighestToLowest">Price: Highest To Lowest</option>
+									</select>
+								</div>
 							</div>
 						</div>
 
 						<div className="product-items">
-							{products.map((product, index) => {
+							{displayProducts.map((product, index) => {
 								let brandName = '';
 								let modelName = product.name;
 
@@ -674,8 +712,7 @@ const Shop = () => {
 						<div className="page-selection">
 							{parseInt(selectedPage) > 1 ? (
 								<button className="page" onClick={handlePageClick}>
-									{parseInt(selectedPage) ===
-									Math.ceil(filteredProducts.length / numProductsToDisplay)
+									{parseInt(selectedPage) === Math.ceil(products.length / numProductsToDisplay)
 										? parseInt(selectedPage) - 2
 										: parseInt(selectedPage) - 1}
 								</button>
@@ -686,7 +723,7 @@ const Shop = () => {
 							)}
 
 							{parseInt(selectedPage) > 1 &&
-							parseInt(selectedPage) < Math.ceil(filteredProducts.length / numProductsToDisplay) ? (
+							parseInt(selectedPage) < Math.ceil(products.length / numProductsToDisplay) ? (
 								<button className="page selected" onClick={handlePageClick}>
 									{selectedPage}
 								</button>
@@ -696,12 +733,11 @@ const Shop = () => {
 								</button>
 							) : (
 								<button className="page" onClick={handlePageClick}>
-									{Math.ceil(filteredProducts.length / numProductsToDisplay) - 1}
+									{Math.ceil(products.length / numProductsToDisplay) - 1}
 								</button>
 							)}
 
-							{parseInt(selectedPage) <
-							Math.ceil(filteredProducts.length / numProductsToDisplay) ? (
+							{parseInt(selectedPage) < Math.ceil(products.length / numProductsToDisplay) ? (
 								<button className="page" onClick={handlePageClick}>
 									{parseInt(selectedPage) > 1
 										? parseInt(selectedPage) + 1
@@ -713,15 +749,13 @@ const Shop = () => {
 								</button>
 							)}
 
-							{parseInt(selectedPage) <
-							Math.ceil(filteredProducts.length / numProductsToDisplay) - 1 ? (
+							{parseInt(selectedPage) < Math.ceil(products.length / numProductsToDisplay) - 1 ? (
 								<p>...</p>
 							) : null}
 
-							{parseInt(selectedPage) <
-							Math.ceil(filteredProducts.length / numProductsToDisplay) - 1 ? (
+							{parseInt(selectedPage) < Math.ceil(products.length / numProductsToDisplay) - 1 ? (
 								<button className="page" onClick={handlePageClick}>
-									{Math.ceil(filteredProducts.length / numProductsToDisplay)}
+									{Math.ceil(products.length / numProductsToDisplay)}
 								</button>
 							) : null}
 						</div>

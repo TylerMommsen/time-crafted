@@ -45,12 +45,12 @@
 	}
 
 	.featured-watches-section {
-		padding: 100px 150px 100px 150px;
+		padding: 3rem 4rem 3rem 4rem;
 		height: calc(100vh * 0.8);
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		justify-content: center;
+		justify-content: space-between;
 		background-color: $secondary-col;
 		color: $primary-col;
 		gap: 50px;

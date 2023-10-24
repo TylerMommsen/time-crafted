@@ -11,7 +11,7 @@ const Home = () => {
 	const [inView, setInView] = useState([false, false, false, false]);
 
 	const getProducts = () => {
-		const numProductsToDisplay = 6;
+		const numProductsToDisplay = 5;
 		const featuredWatches = productsData.slice(0, numProductsToDisplay);
 		setFeaturedWatches(featuredWatches);
 	};
@@ -91,15 +91,21 @@ const Home = () => {
 							}
 
 							return (
-								<ProductCard
+								<Link
+									to={`/Shop/${product.name}`}
 									key={index}
-									isHomePage={true}
-									brandName={brandName}
-									modelName={modelName}
-									price={product.price}
-									frontImg={product.frontImage}
-									sideImg={product.sideImage}
-								/>
+									state={{ product: product }}
+									onClick={() => window.scrollTo({ top: 0, left: 0, behavior: 'instant' })}
+								>
+									<ProductCard
+										isHomePage={true}
+										brandName={brandName}
+										modelName={modelName}
+										price={product.price}
+										frontImg={product.frontImage}
+										sideImg={product.sideImage}
+									/>
+								</Link>
 							);
 						})}
 					</div>
