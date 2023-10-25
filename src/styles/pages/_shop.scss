@@ -213,14 +213,19 @@
 						}
 					}
 
-					.search-bar {
-						padding: 0.5rem 0.7rem 0.5rem 0.7rem;
-						border-radius: 10px;
-						border: 1px solid $primary-col;
-					}
+					.search-bar-container {
+						display: flex;
+						gap: 0.5rem;
 
-					#search-btn {
-						padding: 0.5rem 0.7rem 0.5rem 0.7rem;
+						.search-bar {
+							padding: 0.5rem 0.7rem 0.5rem 0.7rem;
+							border-radius: 10px;
+							border: 1px solid $primary-col;
+						}
+
+						#search-btn {
+							padding: 0.5rem 0.7rem 0.5rem 0.7rem;
+						}
 					}
 				}
 			}

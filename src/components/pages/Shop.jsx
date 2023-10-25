@@ -36,7 +36,40 @@ const Shop = () => {
 	};
 
 	const handleSearch = () => {
-		// do search
+		if (searchTerm.trim() === '') return productsData;
+
+		const searchText = searchTerm.trim().toLowerCase();
+		const updatedProducts = [];
+
+		for (let i = 0; i < productsData.length; i++) {
+			if (productsData[i].name.toLowerCase().includes(searchText)) {
+				if (productsData[i].name) {
+					updatedProducts.push(productsData[i]);
+					continue;
+				}
+			}
+			if (productsData[i].description) {
+				if (productsData[i].description.toLowerCase().includes(searchText)) {
+					updatedProducts.push(productsData[i]);
+					continue;
+				}
+			}
+
+			if (productsData[i].modelNameNumber) {
+				if (productsData[i].modelNameNumber.toLowerCase().includes(searchText)) {
+					updatedProducts.push(productsData[i]);
+					continue;
+				}
+			}
+			if (productsData[i].case) {
+				if (productsData[i].case.toLowerCase().includes(searchText)) {
+					updatedProducts.push(productsData[i]);
+					continue;
+				}
+			}
+		}
+
+		return updatedProducts;
 	};
 
 	// open dropdown to view more filter options
@@ -58,12 +91,12 @@ const Shop = () => {
 		maxHeight: '0',
 	};
 
-	const filterProducts = (allFilters) => {
+	const filterProducts = (allFilters, products) => {
 		if (allFilters.length === 0) {
-			return productsData;
+			return products;
 		}
 
-		let allProducts = productsData;
+		let allProducts = products;
 
 		const brandFilters = [];
 
@@ -209,7 +242,8 @@ const Shop = () => {
 	};
 
 	const updateProducts = () => {
-		const filteredProducts = filterProducts(currentFilters);
+		const searchedProducts = handleSearch();
+		const filteredProducts = filterProducts(currentFilters, searchedProducts);
 		const sortedProducts = sortProducts(filteredProducts);
 		setProducts(sortedProducts);
 		currPageProducts(sortedProducts);
@@ -655,16 +689,18 @@ const Shop = () => {
 							<div className="search-bar-items">
 								<p id="total-products-display">{products.length + ' Items'}</p>
 
-								<input
-									type="text"
-									placeholder="Search..."
-									value={searchTerm}
-									onChange={(e) => setSearchTerm(e.target.value)}
-									className="search-bar"
-								></input>
-								<button onClick={handleSearch} id="search-btn">
-									Search
-								</button>
+								<div className="search-bar-container">
+									<input
+										type="text"
+										placeholder="Search..."
+										value={searchTerm}
+										onChange={(e) => setSearchTerm(e.target.value)}
+										className="search-bar"
+									></input>
+									<button onClick={updateProducts} id="search-btn">
+										Search
+									</button>
+								</div>
 
 								<div className="sorting-container">
 									<label htmlFor="sort-dropdown">Sort By: </label>
