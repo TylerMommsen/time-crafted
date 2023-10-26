@@ -6,7 +6,6 @@
 	flex-direction: column;
 	justify-content: space-between;
 	align-items: center;
-	cursor: pointer;
 
 	.img-and-text {
 		width: 100%;
@@ -16,10 +15,20 @@
 			display: flex;
 			justify-content: center;
 			align-items: center;
+			position: relative;
+
+			.wishlist-icon {
+				position: absolute;
+				width: 2rem;
+				top: 1rem;
+				right: 0;
+				cursor: pointer;
+			}
 
 			.product-image {
 				height: 300px;
 				max-width: auto;
+				cursor: pointer;
 			}
 		}
 
@@ -51,7 +60,8 @@
 
 		.product-btns {
 			width: 100%;
-			display: flex;
+			display: grid;
+			grid-template-columns: 1fr 1fr;
 			gap: 10px;
 
 			button {

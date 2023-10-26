@@ -48,7 +48,12 @@ const Header = ({ currPage }) => {
 				</h1>
 				<NavBar />
 				<div className="header-cart-selections">
-					<p>View Cart</p>
+					<Link to={'/Wishlist'}>
+						<img id="wishlist-icon" src="/wishlist-icon.png"></img>
+					</Link>
+					<Link to={'/Account'}>
+						<img id="user-icon" src="/user-icon.png"></img>
+					</Link>
 				</div>
 			</header>
 		</>

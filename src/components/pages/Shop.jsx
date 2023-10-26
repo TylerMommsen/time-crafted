@@ -1,10 +1,8 @@
 import ProductCard from '../common/ProductCard';
 import productsData from '../../data/watch-products.json';
-import watchBrands from '../../data/watch-brands.json';
 import SimpleParallax from 'simple-parallax-js';
 import { useRef, useState } from 'react';
 import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
 
 const Shop = () => {
 	const [selectedPage, setSelectedPage] = useState(1);
@@ -715,32 +713,17 @@ const Shop = () => {
 
 						<div className="product-items">
 							{displayProducts.map((product, index) => {
-								let brandName = '';
-								let modelName = product.name;
-
-								for (let i = 0; i < watchBrands.length; i++) {
-									if (product.name.includes(watchBrands[i])) {
-										brandName = watchBrands[i];
-										modelName = product.name.replace(brandName, '').trim();
-									}
-								}
-
 								return (
-									<Link
-										to={`/Shop/${product.name}`}
-										state={{ product: product }}
+									<ProductCard
 										key={index}
-										onClick={() => window.scrollTo({ top: 0, left: 0, behavior: 'instant' })}
-									>
-										<ProductCard
-											isHomePage={false}
-											brandName={brandName}
-											modelName={modelName}
-											price={product.price}
-											frontImg={product.frontImage}
-											sideImg={product.sideImage}
-										/>
-									</Link>
+										isHomePage={false}
+										product={product}
+										brandName={product.manufacturer}
+										modelName={product.name.replace(product.manufacturer, '').trim()}
+										price={product.price}
+										frontImg={product.frontImage}
+										sideImg={product.sideImage}
+									/>
 								);
 							})}
 						</div>

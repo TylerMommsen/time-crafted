@@ -51,5 +51,17 @@ header {
 
 	.header-cart-selections {
 		margin-left: auto;
+		@include flexCenter;
+		gap: 2rem;
+
+		a {
+			display: flex;
+			align-items: center;
+		}
+
+		#user-icon,
+		#wishlist-icon {
+			width: 1.5rem;
+		}
 	}
 }

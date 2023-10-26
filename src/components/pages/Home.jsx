@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import ProductCard from '../common/ProductCard';
 import productsData from '../../data/watch-products.json';
-import watchBrands from '../../data/watch-brands.json';
 
 const Home = () => {
 	const [newsLetterEmail, setNewsLetterEmail] = useState();
@@ -80,32 +79,17 @@ const Home = () => {
 
 					<div className="featured-watches">
 						{featuredWatches.map((product, index) => {
-							let brandName = '';
-							let modelName = product.name;
-
-							for (let i = 0; i < watchBrands.length; i++) {
-								if (product.name.includes(watchBrands[i])) {
-									brandName = watchBrands[i];
-									modelName = product.name.replace(brandName, '').trim();
-								}
-							}
-
 							return (
-								<Link
-									to={`/Shop/${product.name}`}
+								<ProductCard
 									key={index}
-									state={{ product: product }}
-									onClick={() => window.scrollTo({ top: 0, left: 0, behavior: 'instant' })}
-								>
-									<ProductCard
-										isHomePage={true}
-										brandName={brandName}
-										modelName={modelName}
-										price={product.price}
-										frontImg={product.frontImage}
-										sideImg={product.sideImage}
-									/>
-								</Link>
+									isHomePage={true}
+									product={product}
+									brandName={product.manufacturer}
+									modelName={product.name.replace(product.manufacturer, '').trim()}
+									price={product.price}
+									frontImg={product.frontImage}
+									sideImg={product.sideImage}
+								/>
 							);
 						})}
 					</div>

@@ -1,7 +1,6 @@
 import { useLocation } from 'react-router-dom';
 import productsData from '../../data/watch-products.json';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import ProductCard from '../common/ProductCard';
 
 const ProductPage = () => {
@@ -188,21 +187,16 @@ const ProductPage = () => {
 							let modelName = product.name;
 
 							return (
-								<Link
-									to={`/Shop/${product.name}`}
-									state={{ product: product }}
+								<ProductCard
 									key={index}
-									onClick={() => window.scrollTo(0, 0)}
-								>
-									<ProductCard
-										isHomePage={false}
-										brandName={brandName}
-										modelName={modelName}
-										price={product.price}
-										frontImg={product.frontImage}
-										sideImg={product.sideImage}
-									/>
-								</Link>
+									isHomePage={false}
+									product={product}
+									brandName={brandName}
+									modelName={modelName}
+									price={product.price}
+									frontImg={product.frontImage}
+									sideImg={product.sideImage}
+								/>
 							);
 						})}
 					</div>

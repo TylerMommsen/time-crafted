@@ -195,16 +195,12 @@
 					gap: 20px;
 
 					#total-products-display {
-						border-right: 1px solid rgba($color: $primary-col, $alpha: 0.5);
-						padding-right: 20px;
 						height: 100%;
 						display: flex;
 						align-items: center;
 					}
 
 					.sorting-container {
-						border-left: 1px solid rgba($color: $primary-col, $alpha: 0.5);
-						padding-left: 20px;
 						height: 100%;
 
 						#sort-dropdown {
@@ -216,6 +212,10 @@
 					.search-bar-container {
 						display: flex;
 						gap: 0.5rem;
+						padding-left: 20px;
+						padding-right: 20px;
+						border-left: 1px solid rgba($color: $primary-col, $alpha: 0.5);
+						border-right: 1px solid rgba($color: $primary-col, $alpha: 0.5);
 
 						.search-bar {
 							padding: 0.5rem 0.7rem 0.5rem 0.7rem;
@@ -243,7 +243,7 @@
 				margin-top: 30px;
 
 				.page {
-					padding: 10px 15px 10px 15px;
+					padding: 0.6rem 0.8rem 0.6rem 0.8rem;
 					background-color: transparent;
 					color: $primary-col;
 					font-weight: bold;

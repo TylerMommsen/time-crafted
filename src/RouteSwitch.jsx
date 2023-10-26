@@ -5,6 +5,7 @@ import GitHubFooter from './components/layout/GitHubFooter';
 import Home from './components/pages/Home';
 import Shop from './components/pages/Shop';
 import ProductPage from './components/pages/ProductPage';
+import Wishlist from './components/pages/Wishlist';
 import About from './components/pages/About';
 import Contact from './components/pages/Contact';
 import ErrorPage from './components/pages/ErrorPage';
@@ -30,6 +31,7 @@ const RouteSwitch = () => {
 					<Route path="/Home" element={<Home />} />
 					<Route path="/Shop" element={<Shop />} />
 					<Route path="/Shop/:productName" element={<ProductPage />} />
+					<Route path="/Wishlist" element={<Wishlist />} />
 					<Route path="/About" element={<About />} />
 					<Route path="/Contact" element={<Contact />} />
 					<Route path="*" element={<ErrorPage />} />
