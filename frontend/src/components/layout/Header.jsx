@@ -51,7 +51,7 @@ const Header = ({ currPage }) => {
 					<Link to={'/Wishlist'}>
 						<img id="wishlist-icon" src="/wishlist-icon.png"></img>
 					</Link>
-					<Link to={'/Account'}>
+					<Link to={'/Login'}>
 						<img id="user-icon" src="/user-icon.png"></img>
 					</Link>
 				</div>
