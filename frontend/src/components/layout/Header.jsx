@@ -44,14 +44,14 @@ const Header = ({ currPage }) => {
 		<>
 			<header className={`${scrolled ? 'scrolled' : ''} ${isHidden ? 'hidden' : ''}`}>
 				<h1 className="header-title">
-					<Link to="/Home">Time Crafted</Link>
+					<Link to="/home">Time Crafted</Link>
 				</h1>
 				<NavBar />
 				<div className="header-cart-selections">
-					<Link to={'/Wishlist'}>
+					<Link to={'/wishlist'}>
 						<img id="wishlist-icon" src="/wishlist-icon.png"></img>
 					</Link>
-					<Link to={'/Login'}>
+					<Link to={'/login'}>
 						<img id="user-icon" src="/user-icon.png"></img>
 					</Link>
 				</div>

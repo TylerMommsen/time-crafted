@@ -21,7 +21,7 @@ const RouteSwitch = () => {
 
 	useEffect(() => {
 		if (currentPage === '') {
-			navigate('/Home');
+			navigate('/home');
 		}
 	}, [currentPage, navigate]);
 
@@ -30,14 +30,14 @@ const RouteSwitch = () => {
 			<Header currPage={currentPage} />
 			<>
 				<Routes>
-					<Route path="/Home" element={<Home />} />
-					<Route path="/Shop" element={<Shop />} />
-					<Route path="/Shop/:productName" element={<ProductPage />} />
-					<Route path="/Wishlist" element={<Wishlist />} />
-					<Route path="/Login" element={<Login />} />
-					<Route path="/SignUp" element={<SignUp />} />
-					<Route path="/About" element={<About />} />
-					<Route path="/Contact" element={<Contact />} />
+					<Route path="/home" element={<Home />} />
+					<Route path="/shop" element={<Shop />} />
+					<Route path="/shop/:productName" element={<ProductPage />} />
+					<Route path="/wishlist" element={<Wishlist />} />
+					<Route path="/login" element={<Login />} />
+					<Route path="/signup" element={<SignUp />} />
+					<Route path="/about" element={<About />} />
+					<Route path="/contact" element={<Contact />} />
 					<Route path="*" element={<ErrorPage />} />
 				</Routes>
 			</>

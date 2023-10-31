@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import axios from 'axios';
 
 const Login = () => {
 	const [formData, setFormData] = useState({
@@ -18,8 +19,10 @@ const Login = () => {
 	const handleLogin = (e) => {
 		e.preventDefault();
 
-		// query database and check for match, if not display eror
-		setError('No account found, email or password may be incorrect.');
+		axios
+			.post('http://localhost:5000/login', formData)
+			.then((result) => console.log(result))
+			.catch((err) => console.log(err));
 	};
 
 	return (
@@ -50,7 +53,7 @@ const Login = () => {
 						</button>
 					</form>
 					<p>
-						Don&apos;t have an account? <Link to="/SignUp">Sign up here</Link>
+						Don&apos;t have an account? <Link to="/signup">Sign up here</Link>
 					</p>
 				</div>
 			</div>
