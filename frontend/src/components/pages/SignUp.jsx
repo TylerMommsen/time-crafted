@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const SignUp = () => {
@@ -13,6 +13,16 @@ const SignUp = () => {
 		password: '',
 		confirmPassword: '',
 	});
+	const navigate = useNavigate();
+	const [loading, setLoading] = useState(true);
+
+	useEffect(() => {
+		const token = localStorage.getItem('token');
+		if (token) {
+			navigate('/dashboard');
+		}
+		setLoading(false);
+	}, []);
 
 	const handleInputChange = (e) => {
 		const { id, value } = e.target;
@@ -52,52 +62,60 @@ const SignUp = () => {
 
 		axios
 			.post('http://localhost:5000/signup', formData)
-			.then((result) => console.log(result))
+			.then((result) => {
+				if (result.data === 'Sign up successful') {
+					const token = result.headers['Set-Cookie'];
+					localStorage.setItem('token', token);
+					navigate('/dashboard');
+				}
+			})
 			.catch((err) => console.log(err));
 	};
 
 	return (
 		<>
-			<div className="sign-up">
-				<div className="container">
-					<div className="title">Sign Up</div>
-					<form onSubmit={handleSignUp}>
-						<input
-							type="email"
-							id="email"
-							placeholder="Email"
-							value={formData.email}
-							onChange={handleInputChange}
-							required
-						/>
-						<input
-							type="password"
-							id="password"
-							placeholder="Password"
-							value={formData.password}
-							onChange={handleInputChange}
-							required
-						/>
-						<input
-							type="password"
-							id="confirmPassword"
-							placeholder="Confirm Password"
-							value={formData.confirmPassword}
-							onChange={handleInputChange}
-							required
-						/>
-						{error.email && <p className="error">{error.email}</p>}
-						{error.password && <p className="error">{error.password}</p>}
-						{error.confirmPassword && <p className="error">{error.confirmPassword}</p>}
-						<button type="submit" id="submit">
-							Sign Up
-						</button>
-					</form>
-					<p>
-						Already have an account? <Link to="/Login">Log in here</Link>
-					</p>
+			{loading ? null : (
+				<div className="sign-up">
+					<div className="container">
+						<div className="title">Sign Up</div>
+						<form onSubmit={handleSignUp}>
+							<input
+								type="email"
+								id="email"
+								placeholder="Email"
+								value={formData.email}
+								onChange={handleInputChange}
+								required
+							/>
+							<input
+								type="password"
+								id="password"
+								placeholder="Password"
+								value={formData.password}
+								onChange={handleInputChange}
+								required
+							/>
+							<input
+								type="password"
+								id="confirmPassword"
+								placeholder="Confirm Password"
+								value={formData.confirmPassword}
+								onChange={handleInputChange}
+								required
+							/>
+							{error.email && <p className="error">{error.email}</p>}
+							{error.password && <p className="error">{error.password}</p>}
+							{error.confirmPassword && <p className="error">{error.confirmPassword}</p>}
+							<button type="submit" id="submit">
+								Sign Up
+							</button>
+						</form>
+						<p>
+							Already have an account? <Link to="/Login">Log in here</Link>
+						</p>
+					</div>
 				</div>
-			</div>
+			)}
 		</>
 	);
 };

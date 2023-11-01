@@ -10,22 +10,22 @@ const NavBar = () => {
 			<nav>
 				<ul>
 					<li>
-						<Link to="/Home" onClick={scrollToTop}>
+						<Link to="/home" onClick={scrollToTop}>
 							Home
 						</Link>
 					</li>
 					<li>
-						<Link to="/Shop" onClick={scrollToTop}>
+						<Link to="/shop" onClick={scrollToTop}>
 							Shop
 						</Link>
 					</li>
 					<li>
-						<Link to="/About" onClick={scrollToTop}>
+						<Link to="/about" onClick={scrollToTop}>
 							About
 						</Link>
 					</li>
 					<li>
-						<Link to="/Contact" onClick={scrollToTop}>
+						<Link to="/contact" onClick={scrollToTop}>
 							Contact
 						</Link>
 					</li>

@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const UserModel = require('../models/UserModel');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 router.post('/', async (req, res) => {
 	const { email, password, confirmPassword } = req.body;
@@ -31,8 +32,14 @@ router.post('/', async (req, res) => {
 			const hashedPassword = await bcrypt.hash(password, 10);
 
 			const newUser = new UserModel({ email, password: hashedPassword });
-			const savedUser = await newUser.save();
-			res.json(savedUser);
+			await newUser.save();
+
+			const token = jwt.sign({ userId: newUser._id }, process.env.JWT_SECRET, {
+				expiresIn: '1h',
+			});
+
+			res.cookie('token', token, { httpOnly: true });
+			res.json('Sign up successful');
 		}
 	} catch (err) {
 		res.json(err);

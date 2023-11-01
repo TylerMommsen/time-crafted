@@ -48,10 +48,16 @@ const Header = ({ currPage }) => {
 				</h1>
 				<NavBar />
 				<div className="header-cart-selections">
-					<Link to={'/wishlist'}>
+					<Link
+						to="/wishlist"
+						onClick={() => window.scrollTo({ top: 0, left: 0, behavior: 'instant' })}
+					>
 						<img id="wishlist-icon" src="/wishlist-icon.png"></img>
 					</Link>
-					<Link to={'/login'}>
+					<Link
+						to="/login"
+						onClick={() => window.scrollTo({ top: 0, left: 0, behavior: 'instant' })}
+					>
 						<img id="user-icon" src="/user-icon.png"></img>
 					</Link>
 				</div>

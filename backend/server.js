@@ -5,14 +5,22 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const session = require('express-session');
 require('dotenv').config();
+const jwt = require('jsonwebtoken');
+const cookieParser = require('cookie-parser');
 
 const app = express();
 const signup = require('./routes/signup');
 const login = require('./routes/login');
 const UserModel = require('./models/UserModel');
 
-app.use(cors());
+app.use(
+	cors({
+		origin: 'http://localhost:5173',
+		credentials: true,
+	})
+);
 app.use(express.json());
+app.use(cookieParser());
 
 const dbConnectionString = process.env.DB_CONNECTION_STRING;
 

@@ -12,6 +12,7 @@ import ErrorPage from './components/pages/ErrorPage';
 import { useEffect } from 'react';
 import Login from './components/pages/Login';
 import SignUp from './components/pages/SignUp';
+import UserDashboard from './components/pages/UserDashboard';
 
 const RouteSwitch = () => {
 	const location = useLocation();
@@ -36,6 +37,7 @@ const RouteSwitch = () => {
 					<Route path="/wishlist" element={<Wishlist />} />
 					<Route path="/login" element={<Login />} />
 					<Route path="/signup" element={<SignUp />} />
+					<Route path="/dashboard" element={<UserDashboard />} />
 					<Route path="/about" element={<About />} />
 					<Route path="/contact" element={<Contact />} />
 					<Route path="*" element={<ErrorPage />} />

@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
+const jwt = require('jsonwebtoken');
 
 router.post('/', (req, res, next) => {
 	passport.authenticate('local', (err, user, info) => {
@@ -12,12 +13,12 @@ router.post('/', (req, res, next) => {
 			return res.status(401).json({ message: 'Account not found' });
 		}
 
-		req.logIn(user, (err) => {
-			if (err) {
-				return next(err);
-			}
-			return res.json('Login successful');
+		const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
+			expiresIn: '1h',
 		});
+
+		res.cookie('token', token, { httpOnly: true });
+		res.json('Login successful');
 	})(req, res, next);
 });
 
