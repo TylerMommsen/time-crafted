@@ -4,6 +4,7 @@ Time Crafted is a mockup e-commerce store that immerses you in the world of high
 
 ## Credits
 
+This project is for personal use only. I do not own any of the rights for the assets used in this project.  
 All image/video assets sourced from:  
 * https://www.thewatchbox.com/
 * https://www.rolex.com/en-us
