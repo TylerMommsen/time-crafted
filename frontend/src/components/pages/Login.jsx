@@ -26,6 +26,22 @@ const Login = () => {
 		if (error) setError(null);
 	};
 
+	function getCookie(cname) {
+		let name = cname + '=';
+		let decodedCookie = decodeURIComponent(document.cookie);
+		let ca = decodedCookie.split(';');
+		for (let i = 0; i < ca.length; i++) {
+			let c = ca[i];
+			while (c.charAt(0) == ' ') {
+				c = c.substring(1);
+			}
+			if (c.indexOf(name) == 0) {
+				return c.substring(name.length, c.length);
+			}
+		}
+		return '';
+	}
+
 	const handleLogin = (e) => {
 		e.preventDefault();
 
@@ -33,11 +49,13 @@ const Login = () => {
 			.post('http://localhost:5000/login', formData, { withCredentials: true })
 			.then((result) => {
 				console.log(result);
-				if (result.data === 'Login successful') {
-					const token = result.headers['Set-Cookie'];
-					console.log(document.cookie);
-					localStorage.setItem('token', token);
-					navigate('/dashboard');
+				if (result.data.message === 'Login successful') {
+					const token = getCookie('token');
+					console.log(token);
+					if (token) {
+						localStorage.setItem('token', token);
+						navigate('/dashboard');
+					}
 				}
 			})
 			.catch((err) => console.log(err));

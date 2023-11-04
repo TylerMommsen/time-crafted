@@ -1,7 +1,14 @@
 import { useState } from 'react';
+import axios from 'axios';
 
 const Contact = () => {
 	const [formData, setFormData] = useState({
+		firstName: '',
+		lastName: '',
+		email: '',
+		message: '',
+	});
+	const [error, setError] = useState({
 		firstName: '',
 		lastName: '',
 		email: '',
@@ -18,7 +25,29 @@ const Contact = () => {
 
 	const handleFormSubmit = (e) => {
 		e.preventDefault();
-		console.log(formData);
+
+		const customError = {
+			firstName: '',
+			lastName: '',
+			email: '',
+			message: '',
+		};
+
+		setError(customError);
+
+		// If there are errors, do not proceed with the message
+		if (Object.values(customError).some((message) => message !== '')) {
+			return;
+		}
+
+		axios
+			.post('http://localhost:5000/contact', formData)
+			.then((result) => {
+				if (result.data === 'Message sent') {
+					// show success
+				}
+			})
+			.catch((err) => console.log(err));
 	};
 
 	return (
@@ -80,6 +109,10 @@ const Contact = () => {
 							required
 						/>
 					</div>
+					{error.firstName && <p className="error">{error.firstName}</p>}
+					{error.lastName && <p className="error">{error.lastName}</p>}
+					{error.email && <p className="error">{error.email}</p>}
+					{error.message && <p className="error">{error.message}</p>}
 
 					<div className="form-section">
 						<button type="submit" className="form-submit">

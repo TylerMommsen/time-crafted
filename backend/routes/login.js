@@ -18,7 +18,7 @@ router.post('/', (req, res, next) => {
 		});
 
 		res.cookie('token', token, { httpOnly: true });
-		res.json('Login successful');
+		res.json({ message: 'Login successful' });
 	})(req, res, next);
 });
 

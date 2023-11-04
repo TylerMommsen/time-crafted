@@ -5,27 +5,27 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	gap: 50px;
-	background-color: $primary-col;
-	color: $secondary-col;
+	gap: 3rem;
+	background-color: $secondary-col;
+	color: $primary-col;
 
 	.contact-title {
 		text-align: center;
 		font-weight: bold;
-		font-size: 32px;
+		font-size: 2rem;
 	}
 
 	form {
 		display: flex;
 		flex-direction: column;
-		gap: 20px;
+		gap: 2rem;
 
 		label {
 			font-weight: bold;
 		}
 
 		input {
-			font-size: 20px;
+			font-size: 1.4rem;
 			border-radius: 5px;
 			padding: 10px;
 			border: 1px solid black;
@@ -45,10 +45,7 @@
 	}
 
 	.form-submit {
-		background-color: rgb(74, 253, 29);
-		padding: 10px 20px 10px 20px;
-		font-size: 18px;
-		color: black;
+		font-size: 1.5rem;
 		align-self: flex-start;
 	}
 
