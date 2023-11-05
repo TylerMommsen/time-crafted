@@ -26,12 +26,72 @@ const Contact = () => {
 	const handleFormSubmit = (e) => {
 		e.preventDefault();
 
+		const validateInput = (input) => {
+			if (!input || input.trim() === '') {
+				return 'Input is required.'; // Invalid if it's empty
+			}
+			if (input.length < 2 || input.length > 50) {
+				return 'Length must be between 2 and 50 characters.'; // Invalid if it doesn't meet the length criteria
+			}
+			if (!/^[A-Za-z]+$/.test(input)) {
+				return 'Input cannot contain special characters.'; // Invalid if it contains special characters or digits
+			}
+			return true;
+		};
+
+		const validateEmail = (email) => {
+			const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+			if (emailRegex.test(email)) {
+				return true;
+			} else {
+				return 'Please enter a valid email';
+			}
+		};
+
+		const validateMessage = (message) => {
+			// Check for presence (not empty or only whitespace)
+			if (!message || message.trim() === '') {
+				return 'Message is required.';
+			}
+
+			// Check for suitable length (adjust min and max as needed)
+			if (message.length < 10 || message.length > 1000) {
+				return 'Message must be between 10 and 1000 characters.';
+			}
+
+			// Check for the absence of HTML or script tags
+			const htmlPattern = /<[^>]*>/; // Regular expression to match HTML tags
+			if (htmlPattern.test(message)) {
+				return 'Message cannot contain HTML or script tags.';
+			}
+
+			return true;
+		};
+
 		const customError = {
 			firstName: '',
 			lastName: '',
 			email: '',
 			message: '',
 		};
+
+		const firstNameOK = validateInput(formData.firstName);
+		const lastNameOK = validateInput(formData.lastName);
+		const emailOK = validateEmail(formData.email);
+		const messageOK = validateMessage(formData.message);
+
+		if (firstNameOK !== true) {
+			customError.firstName = firstNameOK;
+		}
+		if (lastNameOK !== true) {
+			customError.lastName = lastNameOK;
+		}
+		if (emailOK !== true) {
+			customError.email = emailOK;
+		}
+		if (messageOK !== true) {
+			customError.message = messageOK;
+		}
 
 		setError(customError);
 
