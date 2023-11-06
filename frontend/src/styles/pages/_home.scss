@@ -24,7 +24,7 @@
 
 			h1 {
 				font-size: 8rem;
-				letter-spacing: 5px;
+				letter-spacing: 0.4rem;
 				font-family: 'Bebas Neue', sans-serif;
 			}
 
@@ -33,11 +33,9 @@
 			}
 
 			.shop-now-btn {
-				margin-top: 30px;
-				background-color: $primary-col;
-				color: $secondary-col;
-				padding: 20px 30px 20px 30px;
-				font-size: 30px;
+				margin-top: 2rem;
+				padding: 1rem 2rem 1rem 2rem;
+				font-size: 2rem;
 				font-weight: bold;
 				border: none;
 			}
@@ -45,15 +43,14 @@
 	}
 
 	.featured-watches-section {
-		padding: 3rem 4rem 3rem 4rem;
+		padding: 2rem 4rem 2rem 4rem;
 		height: calc(100vh * 0.8);
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		justify-content: space-between;
+		justify-content: space-around;
 		background-color: $secondary-col;
 		color: $primary-col;
-		gap: 50px;
 
 		.text-container {
 			display: flex;
@@ -61,7 +58,7 @@
 			align-self: flex-start;
 
 			h2 {
-				font-size: 32px;
+				font-size: 2rem;
 			}
 		}
 
@@ -72,7 +69,7 @@
 		}
 
 		.view-all-btn {
-			font-size: 20px;
+			font-size: 1.4rem;
 		}
 	}
 
@@ -113,11 +110,11 @@
 			}
 
 			h3 {
-				font-size: 50px;
+				font-size: 3rem;
 			}
 
 			p {
-				font-size: 24px;
+				font-size: 1.5rem;
 			}
 
 			.light {
@@ -145,10 +142,10 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: stretch;
-		gap: 20px;
+		gap: 1.4rem;
 		background-color: $primary-col;
 		color: $secondary-col;
-		padding: 50px;
+		padding: 3rem;
 		box-shadow: 0px 0px 10px 5px $primary-col, 0px 0px 80px 30px $primary-col;
 		z-index: 1;
 
@@ -171,32 +168,32 @@
 			.text {
 				display: flex;
 				flex-direction: column;
-				gap: 10px;
+				gap: 0.5rem;
 
 				.newsletter-title {
-					font-size: 50px;
+					font-size: 3rem;
 				}
 
 				p {
-					font-size: 24px;
+					font-size: 1.5rem;
 				}
 			}
 
 			form {
 				display: flex;
-				gap: 20px;
+				gap: 1.4rem;
 
 				input {
-					padding: 10px;
+					padding: 0.8rem 1rem 0.8rem 1rem;
 					border: 1px solid black;
-					border-radius: 10px;
-					font-size: 24px;
+					border-radius: 0.8rem;
+					font-size: 1.5rem;
 				}
 
 				.newsletter-submit {
 					background-color: $secondary-col;
 					color: $primary-col;
-					font-size: 20px;
+					font-size: 1.4rem;
 				}
 			}
 		}

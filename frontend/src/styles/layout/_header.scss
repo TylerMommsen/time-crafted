@@ -4,7 +4,7 @@ header {
 	color: $secondary-col;
 	display: flex;
 	justify-content: space-between;
-	padding: 20px 30px 20px 30px;
+	padding: 1.4rem 2rem 1.4rem 2rem;
 	height: $header-height;
 	top: 0;
 	align-items: center;
@@ -28,8 +28,8 @@ header {
 		li {
 			position: relative;
 			display: inline-block;
-			padding-bottom: 5px;
-			margin-top: 5px;
+			padding-bottom: 0.4rem;
+			margin-top: 0.4rem;
 
 			&::before {
 				content: '';

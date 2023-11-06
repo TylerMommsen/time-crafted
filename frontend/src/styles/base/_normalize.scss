@@ -29,6 +29,12 @@ button {
 	border: 1px solid black;
 	border-radius: 10px;
 	padding: 0.8rem 1.5rem 0.8rem 1.5rem;
-	color: white;
+	color: $secondary-col;
 	cursor: pointer;
+	transition: 0.3s ease;
+
+	&:hover {
+		background-color: $secondary-col;
+		color: $primary-col;
+	}
 }
