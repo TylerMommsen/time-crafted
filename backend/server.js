@@ -11,7 +11,8 @@ const cookieParser = require('cookie-parser');
 const app = express();
 const signup = require('./routes/signup');
 const login = require('./routes/login');
-const login = require('./routes/contact');
+const contact = require('./routes/contact');
+const newsletter = require('./routes/newsletter');
 const UserModel = require('./models/UserModel');
 
 app.use(
@@ -73,6 +74,7 @@ passport.deserializeUser(async (id, done) => {
 app.use('/signup', signup);
 app.use('/login', login);
 app.use('/contact', contact);
+app.use('/newsletter', newsletter);
 
 app.listen(5000, () => {
 	console.log('server started');

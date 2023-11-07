@@ -2,9 +2,12 @@ import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import ProductCard from '../common/ProductCard';
 import productsData from '../../data/watch-products.json';
+import axios from 'axios';
 
 const Home = () => {
-	const [newsLetterEmail, setNewsLetterEmail] = useState();
+	const [newsLetterEmail, setNewsLetterEmail] = useState('');
+	const [newsLetterEmailErr, setNewsLetterEmailErr] = useState('');
+	const [newsLetterSent, setNewsLetterSent] = useState(false);
 	const [featuredWatches, setFeaturedWatches] = useState([]);
 	const watchShowcaseRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
 	const [inView, setInView] = useState([false, false, false, false]);
@@ -46,7 +49,31 @@ const Home = () => {
 
 	const handleNewsLetterSubmit = (e) => {
 		e.preventDefault();
-		console.log(e.target);
+
+		const validateEmail = (email) => {
+			const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+			if (emailRegex.test(email)) {
+				return true;
+			} else {
+				return 'Please enter a valid email';
+			}
+		};
+
+		const emailOK = validateEmail(newsLetterEmail);
+
+		if (emailOK !== true) {
+			setNewsLetterEmailErr(emailOK);
+		}
+
+		axios
+			.post('http://localhost:5000/newsletter', { email: newsLetterEmail })
+			.then((result) => {
+				console.log(result);
+				if (result.data.message === 'Added to newsletter') {
+					setNewsLetterSent(true);
+				}
+			})
+			.catch((err) => console.log(err));
 	};
 
 	return (
@@ -151,9 +178,10 @@ const Home = () => {
 								required
 							></input>
 							<button type="submit" className="newsletter-submit">
-								Join
+								{!newsLetterSent ? 'Join' : 'Joined Successfully!'}
 							</button>
 						</form>
+						<div className="submit-error">{newsLetterEmailErr}</div>
 					</div>
 				</div>
 			</div>
