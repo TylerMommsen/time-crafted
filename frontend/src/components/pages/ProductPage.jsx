@@ -18,6 +18,10 @@ const ProductPage = () => {
 		maxHeight: '0',
 	};
 
+	const handleWishlistClick = (e) => {
+		e.target.textContent = 'Added';
+	};
+
 	useEffect(() => {
 		const getRecommendedProducts = () => {
 			// sort all products by the brand of currently viewed product
@@ -52,7 +56,9 @@ const ProductPage = () => {
 						<div className="description">{product.description}</div>
 						<div className="buttons-container">
 							<button className="buy-button">Buy</button>
-							<button className="wishlist-button">Wishlist</button>
+							<button className="wishlist-button" onClick={handleWishlistClick}>
+								Wishlist
+							</button>
 						</div>
 					</div>
 				</div>
