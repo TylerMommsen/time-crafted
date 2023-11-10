@@ -13,6 +13,7 @@ import { useEffect } from 'react';
 import Login from './components/pages/Login';
 import SignUp from './components/pages/SignUp';
 import UserDashboard from './components/pages/UserDashboard';
+import Checkout from './components/pages/Checkout';
 
 const RouteSwitch = () => {
 	const location = useLocation();
@@ -35,6 +36,7 @@ const RouteSwitch = () => {
 					<Route path="/shop" element={<Shop />} />
 					<Route path="/shop/:productName" element={<ProductPage />} />
 					<Route path="/wishlist" element={<Wishlist />} />
+					<Route path="/checkout" element={<Checkout />} />
 					<Route path="/login" element={<Login />} />
 					<Route path="/signup" element={<SignUp />} />
 					<Route path="/dashboard" element={<UserDashboard />} />

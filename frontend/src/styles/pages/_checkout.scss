@@ -1,0 +1,33 @@
+.checkout {
+	display: flex;
+	justify-content: center;
+	margin-top: $header-height;
+	padding: 2rem 0 2rem 0;
+
+	.customer-info {
+		width: 40%;
+
+		.title {
+			padding-bottom: 2rem;
+		}
+
+		form {
+			display: flex;
+			flex-direction: column;
+			gap: 2rem;
+		}
+
+		.payment-info,
+		.shipping-info,
+		.contact-info,
+		.order-info {
+			display: flex;
+			flex-direction: column;
+			gap: 0.8rem;
+
+			input {
+				padding: 0.8rem 1rem 0.8rem 1rem;
+			}
+		}
+	}
+}
