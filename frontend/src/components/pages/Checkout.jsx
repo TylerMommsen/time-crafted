@@ -1,4 +1,9 @@
+import { useLocation } from 'react-router-dom';
+
 const Checkout = () => {
+	const location = useLocation();
+	const product = location.state.product;
+
 	const handleCheckoutSubmit = (e) => {
 		e.preventDefault();
 		// handle checkout
@@ -53,18 +58,54 @@ const Checkout = () => {
 							<input type="email" name="contactEmail" id="contactEmail" placeholder="Email" />
 						</div>
 
-						<div className="order-info">
-							<h2>Order Information</h2>
-							<input type="email" name="contactEmail" id="contactEmail" placeholder="Email" />
+						<div className="order-details">
+							<h2>Order Details</h2>
+							<div className="product-name">
+								<p>{product.name}</p>
+								<p>{'$' + product.price}</p>
+							</div>
+							<div className="shipping">
+								<p>Shipping: </p>
+								<p>$0.00</p>
+							</div>
+							<div className="total-price">
+								<p>Total: </p>
+								<p>{'$' + product.price}</p>
+							</div>
+						</div>
+
+						<div className="checkout-btns">
+							<button className="return-shopping">Return to Shopping</button>
+							<button type="submit" className="confirm-purchase">
+								Confirm Purchase
+							</button>
 						</div>
 					</form>
 				</div>
 
-				<div className="order-info">
+				<div className="order-summary">
+					<h2>Order Summary</h2>
 					<div className="watch-info">
-						<div className="watch-title"></div>
-						<div className="watch-model"></div>
+						<img src={product.frontImage} className="watch-img"></img>
+						<div className="watch-title">{product.name}</div>
 					</div>
+					<div className="order-summary-details">
+						<div className="product-name">
+							<p>{product.name}</p>
+							<p>{'$' + product.price}</p>
+						</div>
+						<div className="shipping">
+							<p>Shipping: </p>
+							<p>$0.00</p>
+						</div>
+						<div className="total-price">
+							<p>Total: </p>
+							<p>{'$' + product.price}</p>
+						</div>
+					</div>
+					<button type="submit" className="confirm-purchase">
+						Confirm Purchase
+					</button>
 				</div>
 			</div>
 		</>

@@ -1,8 +1,9 @@
 .checkout {
 	display: flex;
 	justify-content: center;
+	gap: 2rem;
 	margin-top: $header-height;
-	padding: 2rem 0 2rem 0;
+	padding: 2rem 4rem 2rem 4rem;
 
 	.customer-info {
 		width: 40%;
@@ -20,13 +21,58 @@
 		.payment-info,
 		.shipping-info,
 		.contact-info,
-		.order-info {
+		.order-details {
 			display: flex;
 			flex-direction: column;
 			gap: 0.8rem;
 
 			input {
 				padding: 0.8rem 1rem 0.8rem 1rem;
+			}
+		}
+
+		.checkout-btns {
+			display: grid;
+			grid-template-columns: 1fr 2fr;
+			gap: 2rem;
+		}
+
+		.order-details {
+			.product-name,
+			.shipping,
+			.total-price {
+				display: flex;
+				justify-content: space-between;
+				gap: 1rem;
+			}
+		}
+	}
+
+	.order-summary {
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+
+		.watch-info {
+			display: flex;
+			flex-direction: column;
+			gap: 1rem;
+			.watch-img {
+				align-self: center;
+				height: 15rem;
+			}
+		}
+
+		.order-summary-details {
+			display: flex;
+			flex-direction: column;
+			gap: 1rem;
+			.product-name,
+			.shipping,
+			.total-price {
+				display: flex;
+				justify-content: space-between;
+				gap: 1rem;
 			}
 		}
 	}

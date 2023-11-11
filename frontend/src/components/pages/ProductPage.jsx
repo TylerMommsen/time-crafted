@@ -1,4 +1,4 @@
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import productsData from '../../data/watch-products.json';
 import { useEffect, useState } from 'react';
 import ProductCard from '../common/ProductCard';
@@ -55,7 +55,15 @@ const ProductPage = () => {
 						<div className="price">{'$' + product.price}</div>
 						<div className="description">{product.description}</div>
 						<div className="buttons-container">
-							<button className="buy-button">Buy</button>
+							<button className="buy-button">
+								<Link
+									to="/checkout"
+									state={{ product: product }}
+									onClick={() => window.scrollTo({ top: 0, left: 0, behavior: 'instant' })}
+								>
+									Buy
+								</Link>
+							</button>
 							<button className="wishlist-button" onClick={handleWishlistClick}>
 								Wishlist
 							</button>
