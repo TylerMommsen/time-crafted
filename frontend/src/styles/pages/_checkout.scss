@@ -37,6 +37,17 @@
 			gap: 2rem;
 		}
 
+		.container {
+			display: flex;
+			width: 100%;
+			justify-content: space-between;
+			gap: 1rem;
+
+			& > * {
+				flex: 1;
+			}
+		}
+
 		.order-details {
 			.product-name,
 			.shipping,

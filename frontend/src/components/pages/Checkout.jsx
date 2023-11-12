@@ -1,4 +1,4 @@
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 
 const Checkout = () => {
 	const location = useLocation();
@@ -33,23 +33,32 @@ const Checkout = () => {
 						<div className="shipping-info">
 							<h2>Shipping Information</h2>
 
-							<input type="string" name="firstName" id="firstName" placeholder="First Name" />
-							<input type="string" name="lastName" id="lastName" placeholder="Last Name" />
+							<div className="container">
+								<input type="string" name="firstName" id="firstName" placeholder="First Name" />
+								<input type="string" name="lastName" id="lastName" placeholder="Last Name" />
+							</div>
+
 							<input
 								type="string"
 								name="streetAddress"
 								id="streetAddress"
 								placeholder="Street Address"
 							/>
-							<input type="string" name="city" id="city" placeholder="City" />
-							<input type="string" name="country" id="country" placeholder="Country" />
-							<input
-								type="string"
-								name="stateProvince"
-								id="stateProvince"
-								placeholder="State/Province"
-							/>
-							<input type="number" name="postalCode" id="postalCode" placeholder="Postal Code" />
+							<div className="container">
+								<input type="string" name="city" id="city" placeholder="City" />
+								<input type="string" name="country" id="country" placeholder="Country" />
+							</div>
+
+							<div className="container">
+								<input
+									type="string"
+									name="stateProvince"
+									id="stateProvince"
+									placeholder="State/Province"
+								/>
+								<input type="number" name="postalCode" id="postalCode" placeholder="Postal Code" />
+							</div>
+
 							<input type="number" name="phoneNumber" id="phoneNumber" placeholder="Phone Number" />
 						</div>
 
@@ -75,7 +84,9 @@ const Checkout = () => {
 						</div>
 
 						<div className="checkout-btns">
-							<button className="return-shopping">Return to Shopping</button>
+							<button className="return-shopping">
+								<Link to="/Shop">Return to Shopping</Link>
+							</button>
 							<button type="submit" className="confirm-purchase">
 								Confirm Purchase
 							</button>
