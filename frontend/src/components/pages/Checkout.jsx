@@ -85,7 +85,12 @@ const Checkout = () => {
 
 						<div className="checkout-btns">
 							<button className="return-shopping">
-								<Link to="/Shop">Return to Shopping</Link>
+								<Link
+									to="/Shop"
+									onClick={() => window.scrollTo({ top: 0, left: 0, behavior: 'instant' })}
+								>
+									Return to Shopping
+								</Link>
 							</button>
 							<button type="submit" className="confirm-purchase">
 								Confirm Purchase

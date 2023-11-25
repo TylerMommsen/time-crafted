@@ -93,7 +93,7 @@ const Home = () => {
 						<h1>Luxury Watches</h1>
 						<h3>When attention to details matter.</h3>
 						<button className="shop-now-btn">
-							<Link to="/Shop">Shop Now</Link>
+							<Link to="/shop">Shop Now</Link>
 						</button>
 					</div>
 				</div>
@@ -121,7 +121,12 @@ const Home = () => {
 						})}
 					</div>
 					<button className="view-all-btn">
-						<Link to="/Shop">View All Watches</Link>
+						<Link
+							to="/shop"
+							onClick={() => window.scrollTo({ top: 0, left: 0, behavior: 'instant' })}
+						>
+							View All Watches
+						</Link>
 					</button>
 				</div>
 

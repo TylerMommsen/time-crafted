@@ -31,7 +31,7 @@ const ProductCard = ({ isHomePage, product, brandName, modelName, price, frontIm
 					<div className="img-container">
 						<img className="wishlist-icon" src="/heart.png" onClick={handleWishlistClick}></img>
 						<Link
-							to={`/Shop/${modelName}`}
+							to={`/shop/${modelName}`}
 							state={{ product: product }}
 							onClick={() => window.scrollTo({ top: 0, left: 0, behavior: 'instant' })}
 						>
@@ -51,7 +51,7 @@ const ProductCard = ({ isHomePage, product, brandName, modelName, price, frontIm
 					<p className="product-price">${price}</p>
 					<div className="product-btns">
 						<Link
-							to={`/Shop/${modelName}`}
+							to={`/shop/${modelName}`}
 							state={{ product: product }}
 							onClick={() => window.scrollTo({ top: 0, left: 0, behavior: 'instant' })}
 						>
@@ -59,7 +59,7 @@ const ProductCard = ({ isHomePage, product, brandName, modelName, price, frontIm
 						</Link>
 
 						<Link
-							to={`/Purchase/${modelName}`}
+							to={`/checkout`}
 							state={{ product: product }}
 							onClick={() => window.scrollTo({ top: 0, left: 0, behavior: 'instant' })}
 						>

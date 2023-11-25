@@ -37,7 +37,13 @@
 				padding: 1rem 2rem 1rem 2rem;
 				font-size: 2rem;
 				font-weight: bold;
-				border: none;
+				background-color: transparent;
+				border: 1px solid $secondary-col;
+
+				&:hover {
+					background-color: $secondary-col;
+					color: $primary-col;
+				}
 			}
 		}
 	}
