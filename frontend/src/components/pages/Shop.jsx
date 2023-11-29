@@ -730,39 +730,50 @@ const Shop = () => {
 
 						<div className="page-selection">
 							{parseInt(selectedPage) > 1 ? (
+								// not first page selected
 								<button className="page" onClick={handlePageClick}>
 									{parseInt(selectedPage) === Math.ceil(products.length / numProductsToDisplay)
 										? parseInt(selectedPage) - 2
 										: parseInt(selectedPage) - 1}
 								</button>
 							) : (
+								// first page selected
 								<button className="page selected" onClick={handlePageClick}>
 									{selectedPage}
 								</button>
 							)}
 
-							{parseInt(selectedPage) > 1 &&
-							parseInt(selectedPage) < Math.ceil(products.length / numProductsToDisplay) ? (
+							{Math.ceil(products.length / numProductsToDisplay) < 2 ? null : parseInt(
+									selectedPage
+							  ) > 1 &&
+							  parseInt(selectedPage) < Math.ceil(products.length / numProductsToDisplay) ? (
+								// selected page is between first and last page
 								<button className="page selected" onClick={handlePageClick}>
 									{selectedPage}
 								</button>
 							) : parseInt(selectedPage) === 1 ? (
+								// first page selected
 								<button className="page" onClick={handlePageClick}>
 									{2}
 								</button>
 							) : (
+								// last page selected
 								<button className="page" onClick={handlePageClick}>
 									{Math.ceil(products.length / numProductsToDisplay) - 1}
 								</button>
 							)}
 
-							{parseInt(selectedPage) < Math.ceil(products.length / numProductsToDisplay) ? (
+							{Math.ceil(products.length / numProductsToDisplay) < 3 ? null : parseInt(
+									selectedPage
+							  ) < Math.ceil(products.length / numProductsToDisplay) ? (
+								// last page not selected
 								<button className="page" onClick={handlePageClick}>
 									{parseInt(selectedPage) > 1
 										? parseInt(selectedPage) + 1
 										: parseInt(selectedPage) + 2}
 								</button>
 							) : (
+								// last page selected
 								<button className="page selected" onClick={handlePageClick}>
 									{selectedPage}
 								</button>
@@ -773,6 +784,7 @@ const Shop = () => {
 							) : null}
 
 							{parseInt(selectedPage) < Math.ceil(products.length / numProductsToDisplay) - 1 ? (
+								// display button to last page if it is more than 2 pages away
 								<button className="page" onClick={handlePageClick}>
 									{Math.ceil(products.length / numProductsToDisplay)}
 								</button>
