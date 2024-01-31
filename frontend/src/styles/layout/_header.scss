@@ -20,35 +20,6 @@ header {
 		top: -$header-height;
 	}
 
-	nav {
-		position: absolute;
-		left: 50%;
-		transform: translateX(-50%);
-
-		li {
-			position: relative;
-			display: inline-block;
-			padding-bottom: 0.4rem;
-			margin-top: 0.4rem;
-
-			&::before {
-				content: '';
-				position: absolute;
-				width: 0;
-				height: 1px;
-				bottom: 0;
-				left: 50%;
-				transform: translateX(-50%);
-				background-color: rgb(255, 255, 255);
-				transition: width 0.3s;
-			}
-
-			&:hover::before {
-				width: 100%;
-			}
-		}
-	}
-
 	.header-cart-selections {
 		margin-left: auto;
 		@include flexCenter;
@@ -62,6 +33,40 @@ header {
 		#user-icon,
 		#wishlist-icon {
 			width: 1.5rem;
+		}
+	}
+}
+
+@media only screen and (max-width: 1200px) {
+	header {
+		display: grid;
+		column-gap: 2rem;
+		grid-template-columns: minmax(auto, 1fr) minmax(auto, 1fr) minmax(auto, 1fr);
+
+		.header-title {
+			white-space: nowrap;
+			text-align: center;
+		}
+
+		.burger-nav {
+			display: flex;
+			flex-direction: column;
+
+			.burger-menu-icon {
+				width: 3rem;
+				justify-self: start;
+				cursor: pointer;
+				z-index: 100;
+
+				&.open {
+					z-index: -1;
+				}
+			}
+		}
+
+		.header-cart-selections {
+			justify-content: flex-end;
+			margin-left: 0;
 		}
 	}
 }

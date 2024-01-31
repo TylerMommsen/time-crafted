@@ -6,6 +6,10 @@ nav {
 	padding-top: 1.4rem;
 	padding-bottom: 1.4rem;
 
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+
 	ul {
 		display: flex;
 		align-items: center;
@@ -13,7 +17,57 @@ nav {
 		font-size: 1.5rem;
 
 		li {
+			position: relative;
+			display: inline-block;
+			padding-bottom: 0.4rem;
+			margin-top: 0.4rem;
 			color: $secondary-col;
+
+			&::before {
+				content: '';
+				position: absolute;
+				width: 0;
+				height: 1px;
+				bottom: 0;
+				left: 50%;
+				transform: translateX(-50%);
+				background-color: rgb(255, 255, 255);
+				transition: width 0.3s;
+			}
+
+			&:hover::before {
+				width: 100%;
+			}
+		}
+	}
+}
+
+@media only screen and (max-width: 1200px) {
+	nav {
+		flex-direction: column;
+		justify-content: flex-start;
+		padding-top: 20%;
+		height: 100%;
+		width: 40%;
+		border-right: 1px solid $secondary-col;
+		padding-bottom: 0;
+		transform: translateX(0);
+		position: fixed;
+		left: 0;
+		top: 0;
+		background-color: black;
+
+		ul {
+			flex-direction: column;
+			align-items: center;
+		}
+
+		.exit-icon {
+			position: absolute;
+			width: 5rem;
+			right: 5%;
+			top: 1%;
+			cursor: pointer;
 		}
 	}
 }
