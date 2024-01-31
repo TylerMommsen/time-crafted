@@ -25,16 +25,16 @@ a {
 }
 
 button {
-	background-color: $primary-col;
+	background-color: $secondary-col;
 	border: 1px solid black;
 	border-radius: 10px;
 	padding: 0.8rem 1.5rem 0.8rem 1.5rem;
-	color: $secondary-col;
+	color: $primary-col;
 	cursor: pointer;
 	transition: 0.3s ease;
 
 	&:hover {
-		background-color: $secondary-col;
-		color: $primary-col;
+		background-color: $primary-col;
+		color: $secondary-col;
 	}
 }

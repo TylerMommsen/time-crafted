@@ -48,6 +48,7 @@
 				display: flex;
 				flex-direction: column;
 				gap: 2rem;
+				flex: 2;
 
 				.filter-section {
 					display: flex;
@@ -72,7 +73,7 @@
 						color: $primary-col;
 						border: none;
 						padding: 0;
-						font-size: 1rem;
+						font-size: 1.2rem;
 						text-align: start;
 
 						&:hover {
@@ -107,6 +108,7 @@
 			display: flex;
 			flex-direction: column;
 			gap: 5px;
+			flex: 8;
 
 			.all-brands-container {
 				display: flex;
