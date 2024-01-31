@@ -10,7 +10,7 @@ const ProductPage = () => {
 
 	const handleProductGuaranteeClick = (e) => {
 		const sectionInfo = e.target.nextElementSibling;
-		const contentHeight = e.target.nextElementSibling.scrollHeight + 'px';
+		const contentHeight = sectionInfo.scrollHeight + 'px';
 		sectionInfo.style.maxHeight = sectionInfo.style.maxHeight === '0px' ? contentHeight : '0px';
 	};
 

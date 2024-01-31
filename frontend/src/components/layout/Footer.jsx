@@ -1,4 +1,75 @@
+import { useState, useEffect } from 'react';
+
 const Footer = () => {
+	const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 768);
+
+	const sections = [
+		{ title: 'Company', items: ['Our Company', 'Our Story', 'Philanthropy', 'Site Map', 'Career'] },
+		{ title: 'Brand', items: ['Reviews', 'Blog', 'Press'] },
+		{
+			title: 'Support',
+			items: ['FAQ', 'Warranty', 'Contact Us', 'Customer Care', 'Size Guide', 'Track Your Order'],
+		},
+		{
+			title: 'Official Channels',
+			items: ['Instagram', 'Facebook', 'Twitter', 'Pinterest', 'LinkedIn', 'YouTube'],
+		},
+		{
+			title: 'Privacy And Terms',
+			items: [
+				'Return Policy',
+				'Shopping',
+				'Privacy',
+				'Accessibility',
+				'Terms Of Service',
+				'Legal Notice',
+			],
+		},
+	];
+
+	const maxHeight = {
+		maxHeight: '0',
+	};
+
+	useEffect(() => {
+		const handleResize = () => {
+			setIsSmallScreen(window.innerWidth < 768);
+		};
+
+		window.addEventListener('resize', handleResize);
+
+		return () => {
+			window.removeEventListener('resize', handleResize);
+		};
+	}, []);
+
+	// when a section title is clicked
+	const handleSectionClick = (e) => {
+		const sectionInfo = e.target.nextElementSibling;
+		const contentHeight = sectionInfo.scrollHeight + 'px';
+		sectionInfo.style.maxHeight = sectionInfo.style.maxHeight === '0px' ? contentHeight : '0px';
+	};
+
+	// if the screen size is small, then render the footer sections to be collapsable
+	const renderSections = (sections) => {
+		return sections.map((section, index) => (
+			<div className="footer-section" key={index}>
+				<div className="title" onClick={handleSectionClick}>
+					<div className="footer-title">{section.title}</div>
+					<img src="/arrow-down.png" className="arrow"></img>
+				</div>
+
+				<ul style={maxHeight}>
+					{section.items.map((item, itemIndex) => (
+						<li key={itemIndex}>
+							<button>{item}</button>
+						</li>
+					))}
+				</ul>
+			</div>
+		));
+	};
+
 	return (
 		<>
 			<footer>
@@ -21,110 +92,24 @@ const Footer = () => {
 				</div>
 
 				<div className="footer-links">
-					<div className="footer-section">
-						<div className="footer-title">Company</div>
-						<ul>
-							<li>
-								<button>Our Company</button>
-							</li>
-							<li>
-								<button>Our Story</button>
-							</li>
-							<li>
-								<button>Philanthropy</button>
-							</li>
-							<li>
-								<button>Site Map</button>
-							</li>
-							<li>
-								<button>Career</button>
-							</li>
-						</ul>
-					</div>
-
-					<div className="footer-section">
-						<div className="footer-title">Brand</div>
-						<ul>
-							<li>
-								<button>Reviews</button>
-							</li>
-							<li>
-								<button>Blog</button>
-							</li>
-							<li>
-								<button>Press</button>
-							</li>
-						</ul>
-					</div>
-					<div className="footer-section">
-						<div className="footer-title">Support</div>
-						<ul>
-							<li>
-								<button>FAQ</button>
-							</li>
-							<li>
-								<button>Warranty</button>
-							</li>
-							<li>
-								<button>Contact Us</button>
-							</li>
-							<li>
-								<button>Customer Care</button>
-							</li>
-							<li>
-								<button>Size Guide</button>
-							</li>
-							<li>
-								<button>Track Your Order</button>
-							</li>
-						</ul>
-					</div>
-					<div className="footer-section">
-						<div className="footer-title">Official Channels</div>
-						<ul>
-							<li>
-								<button>Instagram</button>
-							</li>
-							<li>
-								<button>Facebook</button>
-							</li>
-							<li>
-								<button>Twitter</button>
-							</li>
-							<li>
-								<button>Pinterest</button>
-							</li>
-							<li>
-								<button>LinkedIn</button>
-							</li>
-							<li>
-								<button>YouTube</button>
-							</li>
-						</ul>
-					</div>
-					<div className="footer-section">
-						<div className="footer-title">Privacy And Terms</div>
-						<ul>
-							<li>
-								<button>Return Policy</button>
-							</li>
-							<li>
-								<button>Shopping</button>
-							</li>
-							<li>
-								<button>Privacy</button>
-							</li>
-							<li>
-								<button>Accessibility</button>
-							</li>
-							<li>
-								<button>Terms Of Service</button>
-							</li>
-							<li>
-								<button>Legal Notice</button>
-							</li>
-						</ul>
-					</div>
+					{isSmallScreen ? (
+						renderSections(sections)
+					) : (
+						<>
+							{sections.map((section, index) => (
+								<div className="footer-section" key={index}>
+									<div className="footer-title">{section.title}</div>
+									<ul>
+										{section.items.map((item, itemIndex) => (
+											<li key={itemIndex}>
+												<button>{item}</button>
+											</li>
+										))}
+									</ul>
+								</div>
+							))}
+						</>
+					)}
 				</div>
 			</footer>
 		</>
