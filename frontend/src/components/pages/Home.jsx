@@ -91,7 +91,7 @@ const Home = () => {
 					></video>
 					<div className="hero-section-text">
 						<h1>Luxury Watches</h1>
-						<h3>When attention to details matter.</h3>
+						<h3>Timeless style delivered to your doorstep.</h3>
 						<button className="shop-now-btn">
 							<Link to="/shop">Shop Now</Link>
 						</button>
@@ -135,7 +135,7 @@ const Home = () => {
 						<h3 className="light">Rolex Deepsea</h3>
 						<p className="light">Unparalleled Style and Precision</p>
 					</div>
-					<img className="showcase-img" src="/Rolex-Deep-Sea-Img.jpg"></img>
+					<img className="showcase-img" id="rolex-deep-sea" src="/Rolex-Deep-Sea-Img.jpg"></img>
 				</div>
 
 				<div className="watch-showcase-section">
@@ -143,7 +143,7 @@ const Home = () => {
 						<h3 className="light">Oris Bracenet</h3>
 						<p className="light">Timeless Elegance on Your Wrist</p>
 					</div>
-					<img className="showcase-img" src="/Oris-Bracenet.jpg"></img>
+					<img className="showcase-img" id="oris-bracenet" src="/Oris-Bracenet.jpg"></img>
 				</div>
 
 				<div className="watch-showcase-section">
