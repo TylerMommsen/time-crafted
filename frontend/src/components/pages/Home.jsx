@@ -13,7 +13,7 @@ const Home = () => {
 	const [inView, setInView] = useState([false, false, false, false]);
 
 	const getProducts = () => {
-		const numProductsToDisplay = 5;
+		const numProductsToDisplay = 6;
 		const featuredWatches = productsData.slice(0, numProductsToDisplay);
 		setFeaturedWatches(featuredWatches);
 	};

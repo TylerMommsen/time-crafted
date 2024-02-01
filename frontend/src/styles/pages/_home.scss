@@ -50,14 +50,14 @@
 	}
 
 	.featured-watches-section {
-		padding: 2rem 4rem 2rem 4rem;
-		height: calc(100vh * 0.8);
+		padding: 4rem 6rem 4rem 6rem;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		justify-content: space-around;
 		background-color: $secondary-col;
 		color: $primary-col;
+		gap: 5rem;
 
 		.text-container {
 			display: flex;
@@ -207,6 +207,20 @@
 	}
 }
 
+@media only screen and (max-width: 1450px) {
+	.home {
+		.featured-watches-section {
+			.featured-watches {
+				display: grid;
+				grid-template-columns: 1fr 1fr 1fr;
+				justify-content: center;
+				align-items: center;
+				place-items: center;
+			}
+		}
+	}
+}
+
 @media only screen and (max-width: 992px) {
 	.home {
 		.hero-section {
@@ -222,6 +236,12 @@
 				.shop-now-btn {
 					font-size: 1.6rem;
 				}
+			}
+		}
+
+		.featured-watches-section {
+			.featured-watches {
+				grid-template-columns: 1fr 1fr;
 			}
 		}
 	}
@@ -264,6 +284,12 @@
 				.shop-now-btn {
 					font-size: 1.4rem;
 				}
+			}
+		}
+
+		.featured-watches-section {
+			.featured-watches {
+				grid-template-columns: 1fr;
 			}
 		}
 	}
