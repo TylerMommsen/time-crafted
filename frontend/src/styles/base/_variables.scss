@@ -5,6 +5,18 @@ $primary-col: #000000;
 $secondary-col: #ffffff;
 $secondary-col-dark: rgb(241, 241, 241);
 
+@media (prefers-color-scheme: dark) {
+	$primary-col: #000000;
+	$secondary-col: #ffffff;
+	$secondary-col-dark: rgb(241, 241, 241);
+}
+
+@media (prefers-color-scheme: light) {
+	$primary-col: #000000;
+	$secondary-col: #ffffff;
+	$secondary-col-dark: rgb(241, 241, 241);
+}
+
 @mixin flexCenter() {
 	display: flex;
 	justify-content: center;

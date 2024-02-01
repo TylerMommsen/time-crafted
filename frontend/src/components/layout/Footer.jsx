@@ -44,19 +44,33 @@ const Footer = () => {
 	}, []);
 
 	// when a section title is clicked
-	const handleSectionClick = (e) => {
-		const sectionInfo = e.target.nextElementSibling;
-		const contentHeight = sectionInfo.scrollHeight + 'px';
-		sectionInfo.style.maxHeight = sectionInfo.style.maxHeight === '0px' ? contentHeight : '0px';
+	const handleSectionClick = (e, clickedElement) => {
+		let element = e.target;
+		if (clickedElement !== 'title') {
+			element = element.parentElement.parentElement;
+		} else {
+			element = element.parentElement;
+		}
+		const sectionInfo = element.querySelector('ul');
+		if (sectionInfo) {
+			const contentHeight = sectionInfo.scrollHeight + 'px';
+			sectionInfo.style.maxHeight = sectionInfo.style.maxHeight === '0px' ? contentHeight : '0px';
+		}
 	};
 
 	// if the screen size is small, then render the footer sections to be collapsable
 	const renderSections = (sections) => {
 		return sections.map((section, index) => (
 			<div className="footer-section" key={index}>
-				<div className="title" onClick={handleSectionClick}>
-					<div className="footer-title">{section.title}</div>
-					<img src="/arrow-down.png" className="arrow"></img>
+				<div className="title" onClick={(e) => handleSectionClick(e, 'title')}>
+					<div className="footer-title" onClick={(e) => handleSectionClick(e, 'footer-title')}>
+						{section.title}
+					</div>
+					<img
+						src="/arrow-down.png"
+						className="arrow"
+						onClick={(e) => handleSectionClick(e, 'arrow')}
+					></img>
 				</div>
 
 				<ul style={maxHeight}>
@@ -102,7 +116,7 @@ const Footer = () => {
 									<ul>
 										{section.items.map((item, itemIndex) => (
 											<li key={itemIndex}>
-												<button>{item}</button>
+												<p>{item}</p>
 											</li>
 										))}
 									</ul>

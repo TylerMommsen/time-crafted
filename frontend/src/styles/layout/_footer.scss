@@ -144,6 +144,7 @@ footer {
 				.title {
 					display: flex;
 					justify-content: space-between;
+					cursor: pointer;
 
 					.footer-title {
 						font-weight: bold;
@@ -153,6 +154,7 @@ footer {
 
 					.arrow {
 						width: 2rem;
+						cursor: pointer;
 					}
 				}
 
@@ -202,6 +204,35 @@ footer {
 
 				ul {
 					gap: 1rem;
+				}
+			}
+		}
+	}
+}
+
+@media only screen and (max-width: 600px) {
+	footer {
+		gap: 2rem;
+		padding: 2rem 3rem 2rem 3rem;
+
+		.company-guarantees {
+			padding-bottom: 2rem;
+
+			.guarantees-section {
+				justify-content: flex-start;
+				gap: 0.8rem;
+
+				h3 {
+					display: none;
+				}
+
+				p {
+					font-size: 0.8rem;
+					margin-top: 0;
+				}
+
+				.guarantee-img {
+					width: 4rem;
 				}
 			}
 		}
