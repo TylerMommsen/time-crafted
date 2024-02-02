@@ -12,8 +12,7 @@
 	}
 
 	.sections {
-		margin-top: 2rem;
-		margin-bottom: 2rem;
+		padding: 2rem;
 		width: 75ch;
 		display: flex;
 		flex-direction: column;
@@ -29,6 +28,42 @@
 
 			.section-text {
 				font-size: 1.4rem;
+			}
+		}
+	}
+}
+
+@media only screen and (max-width: 768px) {
+	.about {
+		.banner-img {
+			object-position: 40% 40%;
+		}
+
+		.sections {
+			width: 60ch;
+
+			.section {
+				.section-text {
+					font-size: 1.2rem;
+				}
+			}
+		}
+	}
+}
+
+@media only screen and (max-width: 600px) {
+	.about {
+		.banner-img {
+			object-position: 45% 40%;
+		}
+
+		.sections {
+			width: 40ch;
+
+			.section {
+				.section-text {
+					font-size: 1rem;
+				}
 			}
 		}
 	}

@@ -45,10 +45,9 @@ nav {
 @media only screen and (max-width: 1200px) {
 	nav {
 		flex-direction: column;
-		justify-content: flex-start;
-		padding-top: 20%;
-		height: 100%;
-		width: 40%;
+		justify-content: center;
+		height: 100vh;
+		width: 100vw;
 		border-right: 1px solid $secondary-col;
 		padding-bottom: 0;
 		transform: translateX(0);

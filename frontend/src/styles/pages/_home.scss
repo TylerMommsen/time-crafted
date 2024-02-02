@@ -57,10 +57,6 @@
 		justify-content: space-around;
 		background-color: $secondary-col;
 		color: $primary-col;
-		@media (prefers-color-scheme: dark) {
-			background-color: $secondary-col;
-			color: $primary-col;
-		}
 		gap: 5rem;
 
 		.text-container {
@@ -153,10 +149,6 @@
 		justify-content: space-between;
 		align-items: stretch;
 		gap: 1.4rem;
-		@media (prefers-color-scheme: dark) {
-			background-color: $primary-col;
-			color: $secondary-col;
-		}
 		background-color: $primary-col;
 		color: $secondary-col;
 		padding: 3rem;
