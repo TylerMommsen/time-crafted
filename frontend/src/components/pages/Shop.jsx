@@ -11,6 +11,8 @@ const Shop = () => {
 	const [searchTerm, setSearchTerm] = useState('');
 	const [currentFilters, setCurrentFilters] = useState([]);
 	const [sortOption, setSortOption] = useState('featured');
+	const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 1200);
+	const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(true);
 	const numProductsToDisplay = 24;
 	const bannerImg = useRef(null);
 
@@ -19,6 +21,22 @@ const Shop = () => {
 			new SimpleParallax(bannerImg.current);
 		}
 	}, []);
+
+	useEffect(() => {
+		const handleResize = () => {
+			setIsSmallScreen(window.innerWidth < 1200);
+		};
+
+		window.addEventListener('resize', handleResize);
+
+		return () => {
+			window.removeEventListener('resize', handleResize);
+		};
+	}, []);
+
+	const openCloseFilterMenu = () => {
+		setIsFilterMenuOpen(!isFilterMenuOpen);
+	};
 
 	const currPageProducts = (allProducts) => {
 		const startIndex = numProductsToDisplay * selectedPage - numProductsToDisplay;
@@ -268,372 +286,379 @@ const Shop = () => {
 				</div>
 
 				<div className="shop-section">
-					<div className="filter-container">
-						<h2>Filter By:</h2>
-						<div className="filter-options">
-							<div className="filter-section">
-								<h3 className="filter-title">Price</h3>
-								<div className="options">
-									<button
-										className="filter-option"
-										onClick={(e) => updateFilters('price', e.target.textContent)}
-									>
-										Less than $2,000
-									</button>
-									<button
-										className="filter-option"
-										onClick={(e) => updateFilters('price', e.target.textContent)}
-									>
-										$2,000 - $4,999
-									</button>
-									<button
-										className="filter-option"
-										onClick={(e) => updateFilters('price', e.target.textContent)}
-									>
-										$5,000 - $10,000
-									</button>
-									<button
-										className="filter-option"
-										onClick={(e) => updateFilters('price', e.target.textContent)}
-									>
-										$10,000+
-									</button>
+					{isFilterMenuOpen ? (
+						<>
+							<div className="filter-container">
+								<div className="filter-main-title">
+									<h2>Filter By:</h2>
+									<img src="exit-icon-black.png" id="exit-icon" onClick={openCloseFilterMenu}></img>
 								</div>
-							</div>
-							<div className="filter-section">
-								<h3 className="filter-title">Condition</h3>
-								<div className="options">
-									<button
-										className="filter-option"
-										onClick={(e) => updateFilters('condition', e.target.textContent)}
-									>
-										Excellent
-									</button>
-									<button
-										className="filter-option"
-										onClick={(e) => updateFilters('condition', e.target.textContent)}
-									>
-										Pre-Owned/Unworn
-									</button>
-									<button
-										className="filter-option"
-										onClick={(e) => updateFilters('condition', e.target.textContent)}
-									>
-										Vintage
-									</button>
-								</div>
-							</div>
-							<div className="filter-section">
-								<h3 className="filter-title">Dial Color</h3>
-								<div className="options">
-									<button
-										className="filter-option"
-										onClick={(e) => updateFilters('dial color', e.target.textContent)}
-									>
-										Black
-									</button>
-									<button
-										className="filter-option"
-										onClick={(e) => updateFilters('dial color', e.target.textContent)}
-									>
-										Silver
-									</button>
-									<button
-										className="filter-option"
-										onClick={(e) => updateFilters('dial color', e.target.textContent)}
-									>
-										White
-									</button>
-									<button
-										className="filter-option"
-										onClick={(e) => updateFilters('dial color', e.target.textContent)}
-									>
-										Blue
-									</button>
-									<button
-										className="filter-option"
-										onClick={(e) => updateFilters('dial color', e.target.textContent)}
-									>
-										Diamonds
-									</button>
-									<button
-										className="filter-option"
-										onClick={(e) => updateFilters('dial color', e.target.textContent)}
-									>
-										Champagne
-									</button>
-									<button
-										className="filter-option"
-										onClick={(e) => updateFilters('dial color', e.target.textContent)}
-									>
-										Slate
-									</button>
-									<button
-										className="filter-option"
-										onClick={(e) => updateFilters('dial color', e.target.textContent)}
-									>
-										Brown
-									</button>
-								</div>
-							</div>
-							<div className="filter-section">
-								<h3 className="filter-title">Size</h3>
-								<div className="options">
-									<button
-										className="filter-option"
-										onClick={(e) => updateFilters('size', e.target.textContent)}
-									>
-										48mm
-									</button>
-									<button
-										className="filter-option"
-										onClick={(e) => updateFilters('size', e.target.textContent)}
-									>
-										46mm
-									</button>
-									<button
-										className="filter-option"
-										onClick={(e) => updateFilters('size', e.target.textContent)}
-									>
-										45mm
-									</button>
-									<button
-										className="filter-option"
-										onClick={(e) => updateFilters('size', e.target.textContent)}
-									>
-										44mm
-									</button>
-									<button
-										className="filter-option"
-										onClick={(e) => updateFilters('size', e.target.textContent)}
-									>
-										43mm
-									</button>
-									<button
-										className="filter-option"
-										onClick={(e) => updateFilters('size', e.target.textContent)}
-									>
-										42mm
-									</button>
-									<button className="view-more-btn" onClick={handleViewMoreClick}>
-										View More
-									</button>
-									<div className="hidden-options" style={filterOptionsMaxHeight}>
-										<button
-											className="filter-option"
-											onClick={(e) => updateFilters('size', e.target.textContent)}
-										>
-											41mm
-										</button>
-										<button
-											className="filter-option"
-											onClick={(e) => updateFilters('size', e.target.textContent)}
-										>
-											40mm
-										</button>
-										<button
-											className="filter-option"
-											onClick={(e) => updateFilters('size', e.target.textContent)}
-										>
-											39mm
-										</button>
-										<button
-											className="filter-option"
-											onClick={(e) => updateFilters('size', e.target.textContent)}
-										>
-											38mm
-										</button>
-										<button
-											className="filter-option"
-											onClick={(e) => updateFilters('size', e.target.textContent)}
-										>
-											37mm
-										</button>
-										<button
-											className="filter-option"
-											onClick={(e) => updateFilters('size', e.target.textContent)}
-										>
-											36mm
-										</button>
-										<button
-											className="filter-option"
-											onClick={(e) => updateFilters('size', e.target.textContent)}
-										>
-											35mm
-										</button>
-										<button
-											className="filter-option"
-											onClick={(e) => updateFilters('size', e.target.textContent)}
-										>
-											34mm
-										</button>
-										<button
-											className="filter-option"
-											onClick={(e) => updateFilters('size', e.target.textContent)}
-										>
-											33mm
-										</button>
-										<button
-											className="filter-option"
-											onClick={(e) => updateFilters('size', e.target.textContent)}
-										>
-											31mm
-										</button>
-										<button
-											className="filter-option"
-											onClick={(e) => updateFilters('size', e.target.textContent)}
-										>
-											29mm
-										</button>
-										<button
-											className="filter-option"
-											onClick={(e) => updateFilters('size', e.target.textContent)}
-										>
-											28mm
-										</button>
-										<button
-											className="filter-option"
-											onClick={(e) => updateFilters('size', e.target.textContent)}
-										>
-											26mm
-										</button>
-										<button
-											className="filter-option"
-											onClick={(e) => updateFilters('size', e.target.textContent)}
-										>
-											24mm
-										</button>
-										<button className="view-less-btn" onClick={handleViewLessClick}>
-											View Less
-										</button>
+								<div className="filter-options">
+									<div className="filter-section">
+										<h3 className="filter-title">Price</h3>
+										<div className="options">
+											<button
+												className="filter-option"
+												onClick={(e) => updateFilters('price', e.target.textContent)}
+											>
+												Less than $2,000
+											</button>
+											<button
+												className="filter-option"
+												onClick={(e) => updateFilters('price', e.target.textContent)}
+											>
+												$2,000 - $4,999
+											</button>
+											<button
+												className="filter-option"
+												onClick={(e) => updateFilters('price', e.target.textContent)}
+											>
+												$5,000 - $10,000
+											</button>
+											<button
+												className="filter-option"
+												onClick={(e) => updateFilters('price', e.target.textContent)}
+											>
+												$10,000+
+											</button>
+										</div>
+									</div>
+									<div className="filter-section">
+										<h3 className="filter-title">Condition</h3>
+										<div className="options">
+											<button
+												className="filter-option"
+												onClick={(e) => updateFilters('condition', e.target.textContent)}
+											>
+												Excellent
+											</button>
+											<button
+												className="filter-option"
+												onClick={(e) => updateFilters('condition', e.target.textContent)}
+											>
+												Pre-Owned/Unworn
+											</button>
+											<button
+												className="filter-option"
+												onClick={(e) => updateFilters('condition', e.target.textContent)}
+											>
+												Vintage
+											</button>
+										</div>
+									</div>
+									<div className="filter-section">
+										<h3 className="filter-title">Dial Color</h3>
+										<div className="options">
+											<button
+												className="filter-option"
+												onClick={(e) => updateFilters('dial color', e.target.textContent)}
+											>
+												Black
+											</button>
+											<button
+												className="filter-option"
+												onClick={(e) => updateFilters('dial color', e.target.textContent)}
+											>
+												Silver
+											</button>
+											<button
+												className="filter-option"
+												onClick={(e) => updateFilters('dial color', e.target.textContent)}
+											>
+												White
+											</button>
+											<button
+												className="filter-option"
+												onClick={(e) => updateFilters('dial color', e.target.textContent)}
+											>
+												Blue
+											</button>
+											<button
+												className="filter-option"
+												onClick={(e) => updateFilters('dial color', e.target.textContent)}
+											>
+												Diamonds
+											</button>
+											<button
+												className="filter-option"
+												onClick={(e) => updateFilters('dial color', e.target.textContent)}
+											>
+												Champagne
+											</button>
+											<button
+												className="filter-option"
+												onClick={(e) => updateFilters('dial color', e.target.textContent)}
+											>
+												Slate
+											</button>
+											<button
+												className="filter-option"
+												onClick={(e) => updateFilters('dial color', e.target.textContent)}
+											>
+												Brown
+											</button>
+										</div>
+									</div>
+									<div className="filter-section">
+										<h3 className="filter-title">Size</h3>
+										<div className="options">
+											<button
+												className="filter-option"
+												onClick={(e) => updateFilters('size', e.target.textContent)}
+											>
+												48mm
+											</button>
+											<button
+												className="filter-option"
+												onClick={(e) => updateFilters('size', e.target.textContent)}
+											>
+												46mm
+											</button>
+											<button
+												className="filter-option"
+												onClick={(e) => updateFilters('size', e.target.textContent)}
+											>
+												45mm
+											</button>
+											<button
+												className="filter-option"
+												onClick={(e) => updateFilters('size', e.target.textContent)}
+											>
+												44mm
+											</button>
+											<button
+												className="filter-option"
+												onClick={(e) => updateFilters('size', e.target.textContent)}
+											>
+												43mm
+											</button>
+											<button
+												className="filter-option"
+												onClick={(e) => updateFilters('size', e.target.textContent)}
+											>
+												42mm
+											</button>
+											<button className="view-more-btn" onClick={handleViewMoreClick}>
+												View More
+											</button>
+											<div className="hidden-options" style={filterOptionsMaxHeight}>
+												<button
+													className="filter-option"
+													onClick={(e) => updateFilters('size', e.target.textContent)}
+												>
+													41mm
+												</button>
+												<button
+													className="filter-option"
+													onClick={(e) => updateFilters('size', e.target.textContent)}
+												>
+													40mm
+												</button>
+												<button
+													className="filter-option"
+													onClick={(e) => updateFilters('size', e.target.textContent)}
+												>
+													39mm
+												</button>
+												<button
+													className="filter-option"
+													onClick={(e) => updateFilters('size', e.target.textContent)}
+												>
+													38mm
+												</button>
+												<button
+													className="filter-option"
+													onClick={(e) => updateFilters('size', e.target.textContent)}
+												>
+													37mm
+												</button>
+												<button
+													className="filter-option"
+													onClick={(e) => updateFilters('size', e.target.textContent)}
+												>
+													36mm
+												</button>
+												<button
+													className="filter-option"
+													onClick={(e) => updateFilters('size', e.target.textContent)}
+												>
+													35mm
+												</button>
+												<button
+													className="filter-option"
+													onClick={(e) => updateFilters('size', e.target.textContent)}
+												>
+													34mm
+												</button>
+												<button
+													className="filter-option"
+													onClick={(e) => updateFilters('size', e.target.textContent)}
+												>
+													33mm
+												</button>
+												<button
+													className="filter-option"
+													onClick={(e) => updateFilters('size', e.target.textContent)}
+												>
+													31mm
+												</button>
+												<button
+													className="filter-option"
+													onClick={(e) => updateFilters('size', e.target.textContent)}
+												>
+													29mm
+												</button>
+												<button
+													className="filter-option"
+													onClick={(e) => updateFilters('size', e.target.textContent)}
+												>
+													28mm
+												</button>
+												<button
+													className="filter-option"
+													onClick={(e) => updateFilters('size', e.target.textContent)}
+												>
+													26mm
+												</button>
+												<button
+													className="filter-option"
+													onClick={(e) => updateFilters('size', e.target.textContent)}
+												>
+													24mm
+												</button>
+												<button className="view-less-btn" onClick={handleViewLessClick}>
+													View Less
+												</button>
+											</div>
+										</div>
+									</div>
+									<div className="filter-section">
+										<h3 className="filter-title">Gender</h3>
+										<div className="options">
+											<button
+												className="filter-option"
+												onClick={(e) => updateFilters('gender', e.target.textContent)}
+											>
+												Men
+											</button>
+											<button
+												className="filter-option"
+												onClick={(e) => updateFilters('gender', e.target.textContent)}
+											>
+												Women
+											</button>
+										</div>
+									</div>
+									<div className="filter-section">
+										<h3 className="filter-title">Metal</h3>
+										<div className="options">
+											<button
+												className="filter-option"
+												onClick={(e) => updateFilters('metal', e.target.textContent)}
+											>
+												Stainless Steel
+											</button>
+											<button
+												className="filter-option"
+												onClick={(e) => updateFilters('metal', e.target.textContent)}
+											>
+												Yellow Gold
+											</button>
+											<button
+												className="filter-option"
+												onClick={(e) => updateFilters('metal', e.target.textContent)}
+											>
+												Rose Gold
+											</button>
+											<button
+												className="filter-option"
+												onClick={(e) => updateFilters('metal', e.target.textContent)}
+											>
+												White Gold
+											</button>
+											<button
+												className="filter-option"
+												onClick={(e) => updateFilters('metal', e.target.textContent)}
+											>
+												Titanium
+											</button>
+											<button
+												className="filter-option"
+												onClick={(e) => updateFilters('metal', e.target.textContent)}
+											>
+												Bronze
+											</button>
+											<button
+												className="filter-option"
+												onClick={(e) => updateFilters('metal', e.target.textContent)}
+											>
+												Ceramic
+											</button>
+										</div>
+									</div>
+									<div className="filter-section">
+										<h3 className="filter-title">Bracelet</h3>
+										<div className="options">
+											<button
+												className="filter-option"
+												onClick={(e) => updateFilters('bracelet', e.target.textContent)}
+											>
+												Oyster
+											</button>
+											<button
+												className="filter-option"
+												onClick={(e) => updateFilters('bracelet', e.target.textContent)}
+											>
+												Jubilee
+											</button>
+											<button
+												className="filter-option"
+												onClick={(e) => updateFilters('bracelet', e.target.textContent)}
+											>
+												Leather
+											</button>
+											<button
+												className="filter-option"
+												onClick={(e) => updateFilters('bracelet', e.target.textContent)}
+											>
+												President
+											</button>
+											<button
+												className="filter-option"
+												onClick={(e) => updateFilters('bracelet', e.target.textContent)}
+											>
+												Rubber
+											</button>
+											<button
+												className="filter-option"
+												onClick={(e) => updateFilters('bracelet', e.target.textContent)}
+											>
+												NATO
+											</button>
+											<button
+												className="filter-option"
+												onClick={(e) => updateFilters('bracelet', e.target.textContent)}
+											>
+												Integral
+											</button>
+											<button
+												className="filter-option"
+												onClick={(e) => updateFilters('bracelet', e.target.textContent)}
+											>
+												Pearlmaster
+											</button>
+											<button
+												className="filter-option"
+												onClick={(e) => updateFilters('bracelet', e.target.textContent)}
+											>
+												Quartz
+											</button>
+										</div>
 									</div>
 								</div>
 							</div>
-							<div className="filter-section">
-								<h3 className="filter-title">Gender</h3>
-								<div className="options">
-									<button
-										className="filter-option"
-										onClick={(e) => updateFilters('gender', e.target.textContent)}
-									>
-										Men
-									</button>
-									<button
-										className="filter-option"
-										onClick={(e) => updateFilters('gender', e.target.textContent)}
-									>
-										Women
-									</button>
-								</div>
-							</div>
-							<div className="filter-section">
-								<h3 className="filter-title">Metal</h3>
-								<div className="options">
-									<button
-										className="filter-option"
-										onClick={(e) => updateFilters('metal', e.target.textContent)}
-									>
-										Stainless Steel
-									</button>
-									<button
-										className="filter-option"
-										onClick={(e) => updateFilters('metal', e.target.textContent)}
-									>
-										Yellow Gold
-									</button>
-									<button
-										className="filter-option"
-										onClick={(e) => updateFilters('metal', e.target.textContent)}
-									>
-										Rose Gold
-									</button>
-									<button
-										className="filter-option"
-										onClick={(e) => updateFilters('metal', e.target.textContent)}
-									>
-										White Gold
-									</button>
-									<button
-										className="filter-option"
-										onClick={(e) => updateFilters('metal', e.target.textContent)}
-									>
-										Titanium
-									</button>
-									<button
-										className="filter-option"
-										onClick={(e) => updateFilters('metal', e.target.textContent)}
-									>
-										Bronze
-									</button>
-									<button
-										className="filter-option"
-										onClick={(e) => updateFilters('metal', e.target.textContent)}
-									>
-										Ceramic
-									</button>
-								</div>
-							</div>
-							<div className="filter-section">
-								<h3 className="filter-title">Bracelet</h3>
-								<div className="options">
-									<button
-										className="filter-option"
-										onClick={(e) => updateFilters('bracelet', e.target.textContent)}
-									>
-										Oyster
-									</button>
-									<button
-										className="filter-option"
-										onClick={(e) => updateFilters('bracelet', e.target.textContent)}
-									>
-										Jubilee
-									</button>
-									<button
-										className="filter-option"
-										onClick={(e) => updateFilters('bracelet', e.target.textContent)}
-									>
-										Leather
-									</button>
-									<button
-										className="filter-option"
-										onClick={(e) => updateFilters('bracelet', e.target.textContent)}
-									>
-										President
-									</button>
-									<button
-										className="filter-option"
-										onClick={(e) => updateFilters('bracelet', e.target.textContent)}
-									>
-										Rubber
-									</button>
-									<button
-										className="filter-option"
-										onClick={(e) => updateFilters('bracelet', e.target.textContent)}
-									>
-										NATO
-									</button>
-									<button
-										className="filter-option"
-										onClick={(e) => updateFilters('bracelet', e.target.textContent)}
-									>
-										Integral
-									</button>
-									<button
-										className="filter-option"
-										onClick={(e) => updateFilters('bracelet', e.target.textContent)}
-									>
-										Pearlmaster
-									</button>
-									<button
-										className="filter-option"
-										onClick={(e) => updateFilters('bracelet', e.target.textContent)}
-									>
-										Quartz
-									</button>
-								</div>
-							</div>
-						</div>
-					</div>
+						</>
+					) : null}
 
 					<div className="product-items-container">
 						<div className="all-brands-container">
@@ -671,45 +696,92 @@ const Shop = () => {
 							</div>
 						</div>
 
-						<div className="search-container">
-							<div className="active-filters">
-								<h3 id="current-filters-title">Current Filters: </h3>
-								<ul>
-									{currentFilters.map((filter, index) => (
-										<li key={index}>
-											{filter.value}
-											<button onClick={() => removeFilter(filter)}>Remove</button>
-										</li>
-									))}
-								</ul>
-							</div>
-
-							<div className="search-bar-items">
-								<p id="total-products-display">{products.length + ' Items'}</p>
-
-								<div className="search-bar-container">
-									<input
-										type="text"
-										placeholder="Search..."
-										value={searchTerm}
-										onChange={(e) => setSearchTerm(e.target.value)}
-										className="search-bar"
-									></input>
-									<button onClick={updateProducts} id="search-btn">
-										Search
-									</button>
+						{isSmallScreen ? (
+							<>
+								<div className="search-container">
+									<div className="search-bar-container">
+										<input
+											type="text"
+											placeholder="Search..."
+											value={searchTerm}
+											onChange={(e) => setSearchTerm(e.target.value)}
+											className="search-bar"
+										></input>
+									</div>
+									<ul>
+										{currentFilters.map((filter, index) => (
+											<li key={index}>
+												{filter.value}
+												<button onClick={() => removeFilter(filter)}>Remove</button>
+											</li>
+										))}
+									</ul>
+									<div className="search-bar-items">
+										<div className="active-filters" onClick={openCloseFilterMenu}>
+											<img
+												src="/filter-icon.png"
+												id="filter-icon"
+												onClick={openCloseFilterMenu}
+											></img>
+											<h3 id="current-filters-title" onClick={openCloseFilterMenu}>
+												Filters
+											</h3>
+										</div>
+										<p id="total-products-display">{products.length + ' Items'}</p>
+										<div className="sorting-container">
+											<label htmlFor="sort-dropdown">Sort By: </label>
+											<select id="sort-dropdown" onChange={(e) => setSortOption(e.target.value)}>
+												<option value="featured">Featured</option>
+												<option value="priceLowestToHighest">Price: Lowest To Highest</option>
+												<option value="priceHighestToLowest">Price: Highest To Lowest</option>
+											</select>
+										</div>
+									</div>
 								</div>
+							</>
+						) : (
+							<>
+								<div className="search-container">
+									<div className="active-filters">
+										<h3 id="current-filters-title">Current Filters: </h3>
+										<ul>
+											{currentFilters.map((filter, index) => (
+												<li key={index}>
+													{filter.value}
+													<button onClick={() => removeFilter(filter)}>Remove</button>
+												</li>
+											))}
+										</ul>
+									</div>
 
-								<div className="sorting-container">
-									<label htmlFor="sort-dropdown">Sort By: </label>
-									<select id="sort-dropdown" onChange={(e) => setSortOption(e.target.value)}>
-										<option value="featured">Featured</option>
-										<option value="priceLowestToHighest">Price: Lowest To Highest</option>
-										<option value="priceHighestToLowest">Price: Highest To Lowest</option>
-									</select>
+									<div className="search-bar-items">
+										<p id="total-products-display">{products.length + ' Items'}</p>
+
+										<div className="search-bar-container">
+											<input
+												type="text"
+												placeholder="Search..."
+												value={searchTerm}
+												onChange={(e) => setSearchTerm(e.target.value)}
+												className="search-bar"
+											></input>
+											<button onClick={updateProducts} id="search-btn">
+												Search
+											</button>
+										</div>
+
+										<div className="sorting-container">
+											<label htmlFor="sort-dropdown">Sort By: </label>
+											<select id="sort-dropdown" onChange={(e) => setSortOption(e.target.value)}>
+												<option value="featured">Featured</option>
+												<option value="priceLowestToHighest">Price: Lowest To Highest</option>
+												<option value="priceHighestToLowest">Price: Highest To Lowest</option>
+											</select>
+										</div>
+									</div>
 								</div>
-							</div>
-						</div>
+							</>
+						)}
 
 						<div className="product-items">
 							{displayProducts.map((product, index) => {
