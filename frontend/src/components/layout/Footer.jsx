@@ -116,7 +116,7 @@ const Footer = () => {
 									<ul>
 										{section.items.map((item, itemIndex) => (
 											<li key={itemIndex}>
-												<p>{item}</p>
+												<button>{item}</button>
 											</li>
 										))}
 									</ul>
