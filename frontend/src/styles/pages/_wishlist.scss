@@ -8,7 +8,7 @@
 	}
 
 	margin-top: $header-height;
-	padding: 3rem 5rem 3rem 5rem;
+	padding: 3rem 4rem 3rem 4rem;
 
 	#wishlist-title {
 		font-size: 3rem;
@@ -19,7 +19,19 @@
 		display: grid;
 		grid-template-columns: repeat(4, 1fr);
 		place-items: center;
-		gap: 3rem;
+		gap: 2rem;
+
+		@media only screen and (max-width: 1400px) {
+			grid-template-columns: 1fr 1fr 1fr;
+		}
+
+		@media only screen and (max-width: 992px) {
+			grid-template-columns: 1fr 1fr;
+		}
+
+		@media only screen and (max-width: 768px) {
+			grid-template-columns: 1fr;
+		}
 	}
 
 	.page-selection {
